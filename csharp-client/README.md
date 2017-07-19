@@ -38,7 +38,6 @@ using IO.Swagger.Api;
 using IO.Swagger.Client;
 using IO.Swagger.Model;
 ```
-
 <a name="packaging"></a>
 ## Packaging
 
@@ -68,23 +67,25 @@ namespace Example
     {
         public void main()
         {
-            
-            var apiInstance = new RetrievingrefreshingApi();
-            var grantType = grantType_example;  // string |  (optional) 
+
+            var apiInstance = new RetrievingRefreshingApi();
+            var grantType = grantType_example;  // string | 
+            var clientId = clientId_example;  // string | 
             var code = code_example;  // string |  (optional) 
-            var clientId = clientId_example;  // string |  (optional) 
             var clientSecret = clientSecret_example;  // string |  (optional) 
             var refreshToken = refreshToken_example;  // string |  (optional) 
+            var platform = 56;  // int? |  (optional) 
 
             try
             {
-                InlineResponse200 result = apiInstance.GetToken(grantType, code, clientId, clientSecret, refreshToken);
+                InlineResponse200 result = apiInstance.GetToken(grantType, clientId, code, clientSecret, refreshToken, platform);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
             {
-                Debug.Print("Exception when calling RetrievingrefreshingApi.GetToken: " + e.Message );
+                Debug.Print("Exception when calling RetrievingRefreshingApi.GetToken: " + e.Message );
             }
+
         }
     }
 }
@@ -93,17 +94,18 @@ namespace Example
 <a name="documentation-for-api-endpoints"></a>
 ## Documentation for API Endpoints
 
-All URIs are relative to *http://access.authorize.net/oauth/v1*
+All URIs are relative to *https://accesstest.authorize.net/oauth/v1*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
-*RetrievingrefreshingApi* | [**GetToken**](docs/RetrievingrefreshingApi.md#gettoken) | **POST** /token | 
+*RetrievingRefreshingApi* | [**GetToken**](docs/RetrievingRefreshingApi.md#gettoken) | **POST** /token | 
 
 
 <a name="documentation-for-models"></a>
 ## Documentation for Models
 
  - [Model.InlineResponse200](docs/InlineResponse200.md)
+ - [Model.InlineResponse400](docs/InlineResponse400.md)
  - [Model.InlineResponse401](docs/InlineResponse401.md)
 
 

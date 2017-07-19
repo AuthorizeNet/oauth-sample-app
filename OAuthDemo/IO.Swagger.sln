@@ -2,7 +2,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
 VisualStudioVersion = 12.0.0.0
 MinimumVisualStudioVersion = 10.0.0.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IO.Swagger", "src\IO.Swagger\IO.Swagger.csproj", "{3EBB4BF3-E722-41AE-9A24-A5DE21E0F615}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IO.Swagger", "src\IO.Swagger\IO.Swagger.csproj", "{3079B6FB-F9C5-4CBB-88D4-11007AC1C6A9}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IO.Swagger.Test", "src\IO.Swagger.Test\IO.Swagger.Test.csproj", "{19F1DEBC-DE5E-4517-8062-F000CD499087}"
 EndProject
@@ -12,10 +12,10 @@ Debug|Any CPU = Debug|Any CPU
 Release|Any CPU = Release|Any CPU
 EndGlobalSection
 GlobalSection(ProjectConfigurationPlatforms) = postSolution
-{3EBB4BF3-E722-41AE-9A24-A5DE21E0F615}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-{3EBB4BF3-E722-41AE-9A24-A5DE21E0F615}.Debug|Any CPU.Build.0 = Debug|Any CPU
-{3EBB4BF3-E722-41AE-9A24-A5DE21E0F615}.Release|Any CPU.ActiveCfg = Release|Any CPU
-{3EBB4BF3-E722-41AE-9A24-A5DE21E0F615}.Release|Any CPU.Build.0 = Release|Any CPU
+{3079B6FB-F9C5-4CBB-88D4-11007AC1C6A9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+{3079B6FB-F9C5-4CBB-88D4-11007AC1C6A9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+{3079B6FB-F9C5-4CBB-88D4-11007AC1C6A9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+{3079B6FB-F9C5-4CBB-88D4-11007AC1C6A9}.Release|Any CPU.Build.0 = Release|Any CPU
 {19F1DEBC-DE5E-4517-8062-F000CD499087}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 {19F1DEBC-DE5E-4517-8062-F000CD499087}.Debug|Any CPU.Build.0 = Debug|Any CPU
 {19F1DEBC-DE5E-4517-8062-F000CD499087}.Release|Any CPU.ActiveCfg = Release|Any CPU

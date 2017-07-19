@@ -21,7 +21,7 @@ namespace IO.Swagger.Api
     /// <summary>
     /// Represents a collection of functions to interact with the API endpoints
     /// </summary>
-    public interface IRetrievingrefreshingApi : IApiAccessor
+    public interface IRetrievingRefreshingApi : IApiAccessor
     {
         #region Synchronous Operations
         /// <summary>
@@ -31,13 +31,14 @@ namespace IO.Swagger.Api
         /// Use the authorization code that you obtained in step 2 to retrieve an access token, which expires after one hour, and a refresh token, which expires after one year, from our /token RESTful endpoint.
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="grantType"> (optional)</param>
+        /// <param name="grantType"></param>
+        /// <param name="clientId"></param>
         /// <param name="code"> (optional)</param>
-        /// <param name="clientId"> (optional)</param>
         /// <param name="clientSecret"> (optional)</param>
         /// <param name="refreshToken"> (optional)</param>
+        /// <param name="platform"> (optional)</param>
         /// <returns>InlineResponse200</returns>
-        InlineResponse200 GetToken (string grantType = null, string code = null, string clientId = null, string clientSecret = null, string refreshToken = null);
+        InlineResponse200 GetToken (string grantType, string clientId, string code = null, string clientSecret = null, string refreshToken = null, int? platform = null);
 
         /// <summary>
         /// 
@@ -46,13 +47,14 @@ namespace IO.Swagger.Api
         /// Use the authorization code that you obtained in step 2 to retrieve an access token, which expires after one hour, and a refresh token, which expires after one year, from our /token RESTful endpoint.
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="grantType"> (optional)</param>
+        /// <param name="grantType"></param>
+        /// <param name="clientId"></param>
         /// <param name="code"> (optional)</param>
-        /// <param name="clientId"> (optional)</param>
         /// <param name="clientSecret"> (optional)</param>
         /// <param name="refreshToken"> (optional)</param>
+        /// <param name="platform"> (optional)</param>
         /// <returns>ApiResponse of InlineResponse200</returns>
-        ApiResponse<InlineResponse200> GetTokenWithHttpInfo (string grantType = null, string code = null, string clientId = null, string clientSecret = null, string refreshToken = null);
+        ApiResponse<InlineResponse200> GetTokenWithHttpInfo (string grantType, string clientId, string code = null, string clientSecret = null, string refreshToken = null, int? platform = null);
         #endregion Synchronous Operations
         #region Asynchronous Operations
         /// <summary>
@@ -62,13 +64,14 @@ namespace IO.Swagger.Api
         /// Use the authorization code that you obtained in step 2 to retrieve an access token, which expires after one hour, and a refresh token, which expires after one year, from our /token RESTful endpoint.
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="grantType"> (optional)</param>
+        /// <param name="grantType"></param>
+        /// <param name="clientId"></param>
         /// <param name="code"> (optional)</param>
-        /// <param name="clientId"> (optional)</param>
         /// <param name="clientSecret"> (optional)</param>
         /// <param name="refreshToken"> (optional)</param>
+        /// <param name="platform"> (optional)</param>
         /// <returns>Task of InlineResponse200</returns>
-        System.Threading.Tasks.Task<InlineResponse200> GetTokenAsync (string grantType = null, string code = null, string clientId = null, string clientSecret = null, string refreshToken = null);
+        System.Threading.Tasks.Task<InlineResponse200> GetTokenAsync (string grantType, string clientId, string code = null, string clientSecret = null, string refreshToken = null, int? platform = null);
 
         /// <summary>
         /// 
@@ -77,28 +80,29 @@ namespace IO.Swagger.Api
         /// Use the authorization code that you obtained in step 2 to retrieve an access token, which expires after one hour, and a refresh token, which expires after one year, from our /token RESTful endpoint.
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="grantType"> (optional)</param>
+        /// <param name="grantType"></param>
+        /// <param name="clientId"></param>
         /// <param name="code"> (optional)</param>
-        /// <param name="clientId"> (optional)</param>
         /// <param name="clientSecret"> (optional)</param>
         /// <param name="refreshToken"> (optional)</param>
+        /// <param name="platform"> (optional)</param>
         /// <returns>Task of ApiResponse (InlineResponse200)</returns>
-        System.Threading.Tasks.Task<ApiResponse<InlineResponse200>> GetTokenAsyncWithHttpInfo (string grantType = null, string code = null, string clientId = null, string clientSecret = null, string refreshToken = null);
+        System.Threading.Tasks.Task<ApiResponse<InlineResponse200>> GetTokenAsyncWithHttpInfo (string grantType, string clientId, string code = null, string clientSecret = null, string refreshToken = null, int? platform = null);
         #endregion Asynchronous Operations
     }
 
     /// <summary>
     /// Represents a collection of functions to interact with the API endpoints
     /// </summary>
-    public partial class RetrievingrefreshingApi : IRetrievingrefreshingApi
+    public partial class RetrievingRefreshingApi : IRetrievingRefreshingApi
     {
         private IO.Swagger.Client.ExceptionFactory _exceptionFactory = (name, response) => null;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="RetrievingrefreshingApi"/> class.
+        /// Initializes a new instance of the <see cref="RetrievingRefreshingApi"/> class.
         /// </summary>
         /// <returns></returns>
-        public RetrievingrefreshingApi(String basePath)
+        public RetrievingRefreshingApi(String basePath)
         {
             this.Configuration = new Configuration(new ApiClient(basePath));
 
@@ -112,12 +116,12 @@ namespace IO.Swagger.Api
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="RetrievingrefreshingApi"/> class
+        /// Initializes a new instance of the <see cref="RetrievingRefreshingApi"/> class
         /// using Configuration object
         /// </summary>
         /// <param name="configuration">An instance of Configuration</param>
         /// <returns></returns>
-        public RetrievingrefreshingApi(Configuration configuration = null)
+        public RetrievingRefreshingApi(Configuration configuration = null)
         {
             if (configuration == null) // use the default one in Configuration
                 this.Configuration = Configuration.Default;
@@ -200,15 +204,16 @@ namespace IO.Swagger.Api
         ///  Use the authorization code that you obtained in step 2 to retrieve an access token, which expires after one hour, and a refresh token, which expires after one year, from our /token RESTful endpoint.
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="grantType"> (optional)</param>
+        /// <param name="grantType"></param>
+        /// <param name="clientId"></param>
         /// <param name="code"> (optional)</param>
-        /// <param name="clientId"> (optional)</param>
         /// <param name="clientSecret"> (optional)</param>
         /// <param name="refreshToken"> (optional)</param>
+        /// <param name="platform"> (optional)</param>
         /// <returns>InlineResponse200</returns>
-        public InlineResponse200 GetToken (string grantType = null, string code = null, string clientId = null, string clientSecret = null, string refreshToken = null)
+        public InlineResponse200 GetToken (string grantType, string clientId, string code = null, string clientSecret = null, string refreshToken = null, int? platform = null)
         {
-             ApiResponse<InlineResponse200> localVarResponse = GetTokenWithHttpInfo(grantType, code, clientId, clientSecret, refreshToken);
+             ApiResponse<InlineResponse200> localVarResponse = GetTokenWithHttpInfo(grantType, clientId, code, clientSecret, refreshToken, platform);
              return localVarResponse.Data;
         }
 
@@ -216,14 +221,21 @@ namespace IO.Swagger.Api
         ///  Use the authorization code that you obtained in step 2 to retrieve an access token, which expires after one hour, and a refresh token, which expires after one year, from our /token RESTful endpoint.
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="grantType"> (optional)</param>
+        /// <param name="grantType"></param>
+        /// <param name="clientId"></param>
         /// <param name="code"> (optional)</param>
-        /// <param name="clientId"> (optional)</param>
         /// <param name="clientSecret"> (optional)</param>
         /// <param name="refreshToken"> (optional)</param>
+        /// <param name="platform"> (optional)</param>
         /// <returns>ApiResponse of InlineResponse200</returns>
-        public ApiResponse< InlineResponse200 > GetTokenWithHttpInfo (string grantType = null, string code = null, string clientId = null, string clientSecret = null, string refreshToken = null)
+        public ApiResponse< InlineResponse200 > GetTokenWithHttpInfo (string grantType, string clientId, string code = null, string clientSecret = null, string refreshToken = null, int? platform = null)
         {
+            // verify the required parameter 'grantType' is set
+            if (grantType == null)
+                throw new ApiException(400, "Missing required parameter 'grantType' when calling RetrievingRefreshingApi->GetToken");
+            // verify the required parameter 'clientId' is set
+            if (clientId == null)
+                throw new ApiException(400, "Missing required parameter 'clientId' when calling RetrievingRefreshingApi->GetToken");
 
             var localVarPath = "/token";
             var localVarPathParams = new Dictionary<String, String>();
@@ -235,6 +247,7 @@ namespace IO.Swagger.Api
 
             // to determine the Content-Type header
             String[] localVarHttpContentTypes = new String[] {
+                "application/x-www-form-urlencoded"
             };
             String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
 
@@ -245,14 +258,12 @@ namespace IO.Swagger.Api
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
-            // set "format" to json by default
-            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
-            localVarPathParams.Add("format", "json");
-            if (grantType != null) localVarQueryParams.Add("grant_type", Configuration.ApiClient.ParameterToString(grantType)); // query parameter
-            if (code != null) localVarQueryParams.Add("code", Configuration.ApiClient.ParameterToString(code)); // query parameter
-            if (clientId != null) localVarQueryParams.Add("client_id", Configuration.ApiClient.ParameterToString(clientId)); // query parameter
-            if (clientSecret != null) localVarQueryParams.Add("client_secret", Configuration.ApiClient.ParameterToString(clientSecret)); // query parameter
-            if (refreshToken != null) localVarQueryParams.Add("refresh_token", Configuration.ApiClient.ParameterToString(refreshToken)); // query parameter
+            if (grantType != null) localVarFormParams.Add("grant_type", Configuration.ApiClient.ParameterToString(grantType)); // form parameter
+            if (code != null) localVarFormParams.Add("code", Configuration.ApiClient.ParameterToString(code)); // form parameter
+            if (clientId != null) localVarFormParams.Add("client_id", Configuration.ApiClient.ParameterToString(clientId)); // form parameter
+            if (clientSecret != null) localVarFormParams.Add("client_secret", Configuration.ApiClient.ParameterToString(clientSecret)); // form parameter
+            if (refreshToken != null) localVarFormParams.Add("refresh_token", Configuration.ApiClient.ParameterToString(refreshToken)); // form parameter
+            if (platform != null) localVarFormParams.Add("platform", Configuration.ApiClient.ParameterToString(platform)); // form parameter
 
 
             // make the HTTP request
@@ -271,22 +282,22 @@ namespace IO.Swagger.Api
             return new ApiResponse<InlineResponse200>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (InlineResponse200) Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse200)));
-            
         }
 
         /// <summary>
         ///  Use the authorization code that you obtained in step 2 to retrieve an access token, which expires after one hour, and a refresh token, which expires after one year, from our /token RESTful endpoint.
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="grantType"> (optional)</param>
+        /// <param name="grantType"></param>
+        /// <param name="clientId"></param>
         /// <param name="code"> (optional)</param>
-        /// <param name="clientId"> (optional)</param>
         /// <param name="clientSecret"> (optional)</param>
         /// <param name="refreshToken"> (optional)</param>
+        /// <param name="platform"> (optional)</param>
         /// <returns>Task of InlineResponse200</returns>
-        public async System.Threading.Tasks.Task<InlineResponse200> GetTokenAsync (string grantType = null, string code = null, string clientId = null, string clientSecret = null, string refreshToken = null)
+        public async System.Threading.Tasks.Task<InlineResponse200> GetTokenAsync (string grantType, string clientId, string code = null, string clientSecret = null, string refreshToken = null, int? platform = null)
         {
-             ApiResponse<InlineResponse200> localVarResponse = await GetTokenAsyncWithHttpInfo(grantType, code, clientId, clientSecret, refreshToken);
+             ApiResponse<InlineResponse200> localVarResponse = await GetTokenAsyncWithHttpInfo(grantType, clientId, code, clientSecret, refreshToken, platform);
              return localVarResponse.Data;
 
         }
@@ -295,14 +306,21 @@ namespace IO.Swagger.Api
         ///  Use the authorization code that you obtained in step 2 to retrieve an access token, which expires after one hour, and a refresh token, which expires after one year, from our /token RESTful endpoint.
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="grantType"> (optional)</param>
+        /// <param name="grantType"></param>
+        /// <param name="clientId"></param>
         /// <param name="code"> (optional)</param>
-        /// <param name="clientId"> (optional)</param>
         /// <param name="clientSecret"> (optional)</param>
         /// <param name="refreshToken"> (optional)</param>
+        /// <param name="platform"> (optional)</param>
         /// <returns>Task of ApiResponse (InlineResponse200)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<InlineResponse200>> GetTokenAsyncWithHttpInfo (string grantType = null, string code = null, string clientId = null, string clientSecret = null, string refreshToken = null)
+        public async System.Threading.Tasks.Task<ApiResponse<InlineResponse200>> GetTokenAsyncWithHttpInfo (string grantType, string clientId, string code = null, string clientSecret = null, string refreshToken = null, int? platform = null)
         {
+            // verify the required parameter 'grantType' is set
+            if (grantType == null)
+                throw new ApiException(400, "Missing required parameter 'grantType' when calling RetrievingRefreshingApi->GetToken");
+            // verify the required parameter 'clientId' is set
+            if (clientId == null)
+                throw new ApiException(400, "Missing required parameter 'clientId' when calling RetrievingRefreshingApi->GetToken");
 
             var localVarPath = "/token";
             var localVarPathParams = new Dictionary<String, String>();
@@ -314,6 +332,7 @@ namespace IO.Swagger.Api
 
             // to determine the Content-Type header
             String[] localVarHttpContentTypes = new String[] {
+                "application/x-www-form-urlencoded"
             };
             String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
 
@@ -324,14 +343,12 @@ namespace IO.Swagger.Api
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
-            // set "format" to json by default
-            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
-            localVarPathParams.Add("format", "json");
-            if (grantType != null) localVarQueryParams.Add("grant_type", Configuration.ApiClient.ParameterToString(grantType)); // query parameter
-            if (code != null) localVarQueryParams.Add("code", Configuration.ApiClient.ParameterToString(code)); // query parameter
-            if (clientId != null) localVarQueryParams.Add("client_id", Configuration.ApiClient.ParameterToString(clientId)); // query parameter
-            if (clientSecret != null) localVarQueryParams.Add("client_secret", Configuration.ApiClient.ParameterToString(clientSecret)); // query parameter
-            if (refreshToken != null) localVarQueryParams.Add("refresh_token", Configuration.ApiClient.ParameterToString(refreshToken)); // query parameter
+            if (grantType != null) localVarFormParams.Add("grant_type", Configuration.ApiClient.ParameterToString(grantType)); // form parameter
+            if (code != null) localVarFormParams.Add("code", Configuration.ApiClient.ParameterToString(code)); // form parameter
+            if (clientId != null) localVarFormParams.Add("client_id", Configuration.ApiClient.ParameterToString(clientId)); // form parameter
+            if (clientSecret != null) localVarFormParams.Add("client_secret", Configuration.ApiClient.ParameterToString(clientSecret)); // form parameter
+            if (refreshToken != null) localVarFormParams.Add("refresh_token", Configuration.ApiClient.ParameterToString(refreshToken)); // form parameter
+            if (platform != null) localVarFormParams.Add("platform", Configuration.ApiClient.ParameterToString(platform)); // form parameter
 
 
             // make the HTTP request
@@ -350,7 +367,6 @@ namespace IO.Swagger.Api
             return new ApiResponse<InlineResponse200>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (InlineResponse200) Configuration.ApiClient.Deserialize(localVarResponse, typeof(InlineResponse200)));
-            
         }
 
     }

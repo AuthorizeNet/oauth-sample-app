@@ -1,15 +1,15 @@
-# IO.Swagger.Api.RetrievingrefreshingApi
+# IO.Swagger.Api.RetrievingRefreshingApi
 
-All URIs are relative to *http://access.authorize.net/oauth/v1*
+All URIs are relative to *https://accesstest.authorize.net/oauth/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**GetToken**](RetrievingrefreshingApi.md#gettoken) | **POST** /token | 
+[**GetToken**](RetrievingRefreshingApi.md#gettoken) | **POST** /token | 
 
 
 <a name="gettoken"></a>
 # **GetToken**
-> InlineResponse200 GetToken (string grantType = null, string code = null, string clientId = null, string clientSecret = null, string refreshToken = null)
+> InlineResponse200 GetToken (string grantType, string clientId, string code = null, string clientSecret = null, string refreshToken = null, int? platform = null)
 
 
 
@@ -29,22 +29,22 @@ namespace Example
     {
         public void main()
         {
-            
-            var apiInstance = new RetrievingrefreshingApi();
-            var grantType = grantType_example;  // string |  (optional) 
+            var apiInstance = new RetrievingRefreshingApi();
+            var grantType = grantType_example;  // string | 
+            var clientId = clientId_example;  // string | 
             var code = code_example;  // string |  (optional) 
-            var clientId = clientId_example;  // string |  (optional) 
             var clientSecret = clientSecret_example;  // string |  (optional) 
             var refreshToken = refreshToken_example;  // string |  (optional) 
+            var platform = 56;  // int? |  (optional) 
 
             try
             {
-                InlineResponse200 result = apiInstance.GetToken(grantType, code, clientId, clientSecret, refreshToken);
+                InlineResponse200 result = apiInstance.GetToken(grantType, clientId, code, clientSecret, refreshToken, platform);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
             {
-                Debug.Print("Exception when calling RetrievingrefreshingApi.GetToken: " + e.Message );
+                Debug.Print("Exception when calling RetrievingRefreshingApi.GetToken: " + e.Message );
             }
         }
     }
@@ -55,11 +55,12 @@ namespace Example
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **grantType** | **string**|  | [optional] 
+ **grantType** | **string**|  | 
+ **clientId** | **string**|  | 
  **code** | **string**|  | [optional] 
- **clientId** | **string**|  | [optional] 
  **clientSecret** | **string**|  | [optional] 
  **refreshToken** | **string**|  | [optional] 
+ **platform** | **int?**|  | [optional] 
 
 ### Return type
 
@@ -71,7 +72,7 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
+ - **Content-Type**: application/x-www-form-urlencoded
  - **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

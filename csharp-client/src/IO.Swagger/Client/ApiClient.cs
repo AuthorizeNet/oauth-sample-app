@@ -48,17 +48,17 @@ namespace IO.Swagger.Client
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ApiClient" /> class
-        /// with default configuration and base path (http://access.authorize.net/oauth/v1).
+        /// with default configuration and base path (https://accesstest.authorize.net/oauth/v1).
         /// </summary>
         public ApiClient()
         {
             Configuration = Configuration.Default;
-            RestClient = new RestClient("http://access.authorize.net/oauth/v1");
+            RestClient = new RestClient("https://accesstest.authorize.net/oauth/v1");
         }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ApiClient" /> class
-        /// with default base path (http://access.authorize.net/oauth/v1).
+        /// with default base path (https://accesstest.authorize.net/oauth/v1).
         /// </summary>
         /// <param name="config">An instance of Configuration.</param>
         public ApiClient(Configuration config = null)
@@ -68,7 +68,7 @@ namespace IO.Swagger.Client
             else
                 Configuration = config;
 
-            RestClient = new RestClient("http://access.authorize.net/oauth/v1");
+            RestClient = new RestClient("https://accesstest.authorize.net/oauth/v1");
         }
 
         /// <summary>
@@ -76,7 +76,7 @@ namespace IO.Swagger.Client
         /// with default configuration.
         /// </summary>
         /// <param name="basePath">The base path.</param>
-        public ApiClient(String basePath = "http://access.authorize.net/oauth/v1")
+        public ApiClient(String basePath = "https://accesstest.authorize.net/oauth/v1")
         {
            if (String.IsNullOrEmpty(basePath))
                 throw new ArgumentException("basePath cannot be empty");

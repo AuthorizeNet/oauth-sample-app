@@ -20,6 +20,7 @@ using System.Runtime.Serialization;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using System.ComponentModel.DataAnnotations;
+using SwaggerDateConverter = IO.Swagger.Client.SwaggerDateConverter;
 
 namespace IO.Swagger.Model
 {
@@ -49,21 +50,25 @@ namespace IO.Swagger.Model
         /// </summary>
         [DataMember(Name="status", EmitDefaultValue=false)]
         public int? Status { get; set; }
+
         /// <summary>
         /// Gets or Sets Reason
         /// </summary>
         [DataMember(Name="reason", EmitDefaultValue=false)]
         public string Reason { get; set; }
+
         /// <summary>
         /// Gets or Sets Message
         /// </summary>
         [DataMember(Name="message", EmitDefaultValue=false)]
         public string Message { get; set; }
+
         /// <summary>
         /// Gets or Sets CorrelationId
         /// </summary>
         [DataMember(Name="correlationId", EmitDefaultValue=false)]
         public string CorrelationId { get; set; }
+
         /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
@@ -157,8 +162,13 @@ namespace IO.Swagger.Model
             }
         }
 
-        public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
-        { 
+        /// <summary>
+        /// To validate all properties of the instance
+        /// </summary>
+        /// <param name="validationContext">Validation context</param>
+        /// <returns>Validation Result</returns>
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        {
             yield break;
         }
     }

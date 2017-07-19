@@ -17,6 +17,7 @@ namespace OAuthDemo.Models
             State = "someValue";
             Sub = "oauth";
             updateRedirectMerchantUrl();
+            GrantType = "authorization_code";
         }
 
         // Step 1
