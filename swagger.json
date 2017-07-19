@@ -1,0 +1,137 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "description": "",
+        "version": "1.0.0",
+        "title": ""
+    },
+    "host": "accesstest.authorize.net",
+    "basePath": "/oauth/v1",
+    "schemes": [
+        "https"
+    ],
+    "paths": {
+        "/token": {
+            "post": {
+                "tags": [
+                    "retrieving refreshing"
+                ],
+                "description": "Use the authorization code that you obtained in step 2 to retrieve an access token, which expires after one hour, and a refresh token, which expires after one year, from our /token RESTful endpoint.",
+                "operationId": "getToken",
+                "consumes": [
+                    "application/x-www-form-urlencoded"
+                ],
+                "parameters": [
+                    {
+                        "name": "grant_type",
+                        "in": "formData",
+                        "type": "string",
+                        "required": true
+                    },
+                    {
+                        "name": "code",
+                        "in": "formData",
+                        "type": "string"
+                    },
+                    {
+                        "name": "client_id",
+                        "in": "formData",
+                        "type": "string",
+                        "required": true
+                    },
+                    {
+                        "name": "client_secret",
+                        "in": "formData",
+                        "type": "string"
+                    },
+                    {
+                        "name": "refresh_token",
+                        "in": "formData",
+                        "type": "string"
+                    },
+                    {
+                        "name": "platform",
+                        "in": "formData",
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "$ref": "#/responses/GetTokenResponseOK"
+                    },
+                    "400": {
+                        "$ref": "#/responses/GetTokenResponseBadRequest"
+                    },
+                    "401": {
+                        "$ref": "#/responses/GetTokenResponseExpired"
+                    }
+                }
+            }
+        }
+    },
+    "responses": {
+        "GetTokenResponseOK": {
+            "description": "OK",
+            "schema": {
+                "type": "object",
+                "properties": {
+                    "access_token": {
+                        "type": "string"
+                    },
+                    "token_type": {
+                        "type": "string"
+                    },
+                    "refresh_token": {
+                        "type": "string"
+                    },
+                    "expires_in": {
+                        "type": "integer"
+                    },
+                    "scope": {
+                        "type": "string"
+                    },
+                    "refresh_token_expires_in": {
+                        "type": "integer"
+                    },
+                    "client_status": {
+                        "type": "string"
+                    }
+                }
+            }
+        },
+        "GetTokenResponseExpired": {
+            "description": "Token Expired",
+            "schema": {
+                "type": "object",
+                "properties": {
+                    "status": {
+                        "type": "integer"
+                    },
+                    "reason": {
+                        "type": "string"
+                    },
+                    "message": {
+                        "type": "string"
+                    },
+                    "correlationId": {
+                        "type": "string"
+                    }
+                }
+            }
+        },
+        "GetTokenResponseBadRequest": {
+            "description": "Bad Request",
+            "schema": {
+                "type": "object",
+                "properties": {
+                    "error": {
+                        "type": "string"
+                    },
+                    "error_description": {
+                        "type": "string"
+                    }
+                }
+            }
+        }
+    }
+}
