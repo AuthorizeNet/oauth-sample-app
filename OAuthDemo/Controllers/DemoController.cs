@@ -11,23 +11,21 @@ namespace OAuthDemo.Controllers
         // GET: Demo
         public ActionResult Index()
         {
-            System.Diagnostics.Debug.WriteLine("called Index");
-            System.Diagnostics.Debug.WriteLine("called Index");
-            System.Diagnostics.Debug.WriteLine("called Index");
             return View(new OAuthDemo.Models.Demo());
         }
 
-        public ActionResult RedirectMerchant(OAuthDemo.Models.Demo model)
+        public ActionResult RedirectMerchant(OAuthDemo.Models.Demo client)
         {
-            System.Diagnostics.Debug.WriteLine("called RedirectMerchant");
-            System.Diagnostics.Debug.WriteLine("called RedirectMerchant");
-            System.Diagnostics.Debug.WriteLine("called RedirectMerchant");
-            System.Diagnostics.Debug.WriteLine("called RedirectMerchant");
+            System.Diagnostics.Debug.WriteLine(client);
+            client.updateRedirectMerchantUrl();
+            System.Diagnostics.Debug.WriteLine(client.RedirectMerchantUrl);
+            return Redirect(client.RedirectMerchantUrl);
+        }
 
-            System.Diagnostics.Debug.WriteLine(model);
-            System.Diagnostics.Debug.WriteLine(model.ToString());
+        public ActionResult RetrieveAccessToken(OAuthDemo.Models.Demo client)
+        {
 
-            return View("Index", model); ;
+            return View("Index", client);
         }
     }
 }
