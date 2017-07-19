@@ -8,6 +8,11 @@ namespace OAuthDemo.Models
 {
     public class Demo
     {
+        public static string RetrieveErrorResponse = "Error Retrieving the Access Token";
+        public static string RefreshErrorResponse = "Error Refreshing the Access Token";
+        public static string RevokePermissionsUrl = "https://sandbox.authorize.net/UI/themes/sandbox/Settings/ResellerDelegation.aspx";
+
+
         public Demo()
         {
             Id = "4dp5b7gRqk";
@@ -18,6 +23,7 @@ namespace OAuthDemo.Models
             Sub = "oauth";
             updateRedirectMerchantUrl();
             GrantType = "authorization_code";
+            platform = 2;
         }
 
         // Step 1
@@ -43,12 +49,13 @@ namespace OAuthDemo.Models
         // Step 3
         public string GrantType { get; set; }
         public string Code { get; set; }
-
+        public string Step3Response { get; set; }
+        public int? platform { get; set; }
         // Step 4
 
         // Step 5
         public string RefreshToken { get; set; }
-
+        public string Step5Response { get; set; }
 
         override public string ToString()
         {   

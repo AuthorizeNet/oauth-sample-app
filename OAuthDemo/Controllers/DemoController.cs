@@ -28,17 +28,48 @@ namespace OAuthDemo.Controllers
 
         public ActionResult RetrieveAccessToken(OAuthDemo.Models.Demo client)
         {
-            RetrievingRefreshingApi instance = new RetrievingRefreshingApi();
-            string grantType = "authorization_code";
-            string clientId = "4dp5b7gRqk";
-            string code = "novp2e";
-            string clientSecret = "fa3a5b16753d09b24bb44243605a4a98";
-            string refreshToken = null;
-            int? platform = 2;
-            var response = instance.GetToken(grantType, clientId, code, clientSecret, refreshToken, platform);
-            System.Diagnostics.Debug.WriteLine(response);
+            System.Diagnostics.Debug.WriteLine(client);
+
+            try
+            {
+                RetrievingRefreshingApi instance = new RetrievingRefreshingApi();
+                var response = instance.GetToken(grantType: client.GrantType, clientId: client.Id, code: client.Code, clientSecret: client.Secret, platform: client.platform);
+                //System.Diagnostics.Debug.WriteLine(response.ToJson());
+                client.Step3Response = response.ToJson();
+                client.RefreshToken = response.RefreshToken;
+            }
+            catch
+            {
+                client.Step3Response = OAuthDemo.Models.Demo.RetrieveErrorResponse;
+            }
 
             return View("Index", client);
+        }
+
+        public ActionResult RefreshAccessToken(OAuthDemo.Models.Demo client)
+        {
+            ModelState.Clear();
+
+            System.Diagnostics.Debug.WriteLine(client);
+
+            try
+            {
+                RetrievingRefreshingApi instance = new RetrievingRefreshingApi();
+                var response = instance.GetToken(grantType: client.GrantType, clientId: client.Id, refreshToken: client.RefreshToken);
+                //System.Diagnostics.Debug.WriteLine(response.ToJson());
+                client.Step5Response = response.ToJson();
+            }
+            catch
+            {
+                client.Step5Response = OAuthDemo.Models.Demo.RefreshErrorResponse;
+            }
+
+            return View("Index", client);
+        }
+
+        public ActionResult RedirectRevokePermissions()
+        {
+            return Redirect(OAuthDemo.Models.Demo.RevokePermissionsUrl);
         }
     }
 }
