@@ -193,6 +193,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\ChargeCreditCard.cs" />
     <Compile Include="Controllers\DemoController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -281,6 +282,10 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\sdk-dotnet\Authorize.NET\AuthorizeNET.csproj">
+      <Project>{5d52eaec-42fb-4313-83b8-69e2f55ebf14}</Project>
+      <Name>AuthorizeNET</Name>
+    </ProjectReference>
     <ProjectReference Include="..\csharp-client\src\IO.Swagger\IO.Swagger.csproj">
       <Project>{3079b6fb-f9c5-4cbb-88d4-11007ac1c6a9}</Project>
       <Name>IO.Swagger</Name>

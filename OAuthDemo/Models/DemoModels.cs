@@ -10,6 +10,7 @@ namespace OAuthDemo.Models
     {
         public static string RetrieveErrorResponse = "Error Retrieving the Access Token";
         public static string RefreshErrorResponse = "Error Refreshing the Access Token";
+        public static string APICallErrorResponse = "Error Calling ANet API";
         public static string RevokePermissionsUrl = "https://sandbox.authorize.net/UI/themes/sandbox/Settings/ResellerDelegation.aspx";
 
 
@@ -52,6 +53,9 @@ namespace OAuthDemo.Models
         public string Step3Response { get; set; }
         public int? platform { get; set; }
         // Step 4
+        public string AccessToken { get; set; }
+        public decimal Amount { get; set; }
+        public string Step4Response { get; set; }
 
         // Step 5
         public string RefreshToken { get; set; }

@@ -7,6 +7,7 @@ using System.Web.Mvc;
 using IO.Swagger.Client;
 using IO.Swagger.Api;
 using IO.Swagger.Model;
+using OAuthDemo.Models;
 
 namespace OAuthDemo.Controllers
 {
@@ -15,10 +16,10 @@ namespace OAuthDemo.Controllers
         // GET: Demo
         public ActionResult Index()
         {
-            return View(new OAuthDemo.Models.Demo());
+            return View(new Demo());
         }
 
-        public ActionResult RedirectMerchant(OAuthDemo.Models.Demo client)
+        public ActionResult RedirectMerchant(Demo client)
         {
             System.Diagnostics.Debug.WriteLine(client);
             client.updateRedirectMerchantUrl();
@@ -26,7 +27,7 @@ namespace OAuthDemo.Controllers
             return Redirect(client.RedirectMerchantUrl);
         }
 
-        public ActionResult RetrieveAccessToken(OAuthDemo.Models.Demo client)
+        public ActionResult RetrieveAccessToken(Demo client)
         {
             System.Diagnostics.Debug.WriteLine(client);
 
@@ -36,20 +37,33 @@ namespace OAuthDemo.Controllers
                 var response = instance.GetToken(grantType: client.GrantType, clientId: client.Id, code: client.Code, clientSecret: client.Secret, platform: client.platform);
                 //System.Diagnostics.Debug.WriteLine(response.ToJson());
                 client.Step3Response = response.ToJson();
+                client.AccessToken = response.AccessToken;
                 client.RefreshToken = response.RefreshToken;
             }
             catch
             {
-                client.Step3Response = OAuthDemo.Models.Demo.RetrieveErrorResponse;
+                client.Step3Response = Demo.RetrieveErrorResponse;
+            }
+
+            return View("Index", client);
+        }
+        public ActionResult ChargeCreditCard(Demo client)
+        {
+            System.Diagnostics.Debug.WriteLine(client);
+            try
+            {
+                client.Step4Response = net.authorize.sample.ChargeCreditCard.Run(client.AccessToken, client.Amount);
+            }
+            catch
+            {
+                client.Step4Response = Demo.APICallErrorResponse;
             }
 
             return View("Index", client);
         }
 
-        public ActionResult RefreshAccessToken(OAuthDemo.Models.Demo client)
+        public ActionResult RefreshAccessToken(Demo client)
         {
-            ModelState.Clear();
-
             System.Diagnostics.Debug.WriteLine(client);
 
             try
@@ -61,7 +75,7 @@ namespace OAuthDemo.Controllers
             }
             catch
             {
-                client.Step5Response = OAuthDemo.Models.Demo.RefreshErrorResponse;
+                client.Step5Response = Demo.RefreshErrorResponse;
             }
 
             return View("Index", client);
@@ -69,7 +83,7 @@ namespace OAuthDemo.Controllers
 
         public ActionResult RedirectRevokePermissions()
         {
-            return Redirect(OAuthDemo.Models.Demo.RevokePermissionsUrl);
+            return Redirect(Demo.RevokePermissionsUrl);
         }
     }
 }
