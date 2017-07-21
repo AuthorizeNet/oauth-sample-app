@@ -200,6 +200,19 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201707211819197_DbSetup.cs" />
+    <Compile Include="Migrations\201707211819197_DbSetup.Designer.cs">
+      <DependentUpon>201707211819197_DbSetup.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201707211911420_IdFix.cs" />
+    <Compile Include="Migrations\201707211911420_IdFix.Designer.cs">
+      <DependentUpon>201707211911420_IdFix.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201707211919446_IdFix1.cs" />
+    <Compile Include="Migrations\201707211919446_IdFix1.Designer.cs">
+      <DependentUpon>201707211919446_IdFix1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\DemoModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -293,6 +306,17 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201707211819197_DbSetup.resx">
+      <DependentUpon>201707211819197_DbSetup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201707211911420_IdFix.resx">
+      <DependentUpon>201707211911420_IdFix.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201707211919446_IdFix1.resx">
+      <DependentUpon>201707211919446_IdFix1.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

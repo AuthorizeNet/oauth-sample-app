@@ -13,72 +13,115 @@ namespace OAuthDemo.Controllers
 {
     public class DemoController : Controller
     {
+        private ApplicationDbContext _context;
+        public DemoController()
+        {
+            _context = new ApplicationDbContext();
+        }
         // GET: Demo
         public ActionResult Index()
         {
-            return View(new Demo());
+            Demo DemoModel = new Demo(Guid.NewGuid().ToString());
+            _context.Demos.Add(DemoModel);
+            _context.SaveChanges();
+            return View(DemoModel);
         }
 
-        public ActionResult RedirectMerchant(Demo client)
+        // step 2
+        public ActionResult RedirectMerchant(Demo InputModel)
         {
-            System.Diagnostics.Debug.WriteLine(client);
-            client.updateRedirectMerchantUrl();
-            System.Diagnostics.Debug.WriteLine(client.RedirectMerchantUrl);
-            return Redirect(client.RedirectMerchantUrl);
+            System.Diagnostics.Debug.WriteLine(_context.Demos.ToString());
+            var SavedModel = _context.Demos.SingleOrDefault(d => d.Id == InputModel.Id);
+            SavedModel.ClientId = InputModel.ClientId;
+            SavedModel.RedirectUri = InputModel.RedirectUri;
+            SavedModel.Scope = InputModel.Scope;
+            SavedModel.State = InputModel.State;
+            SavedModel.Sub = InputModel.Sub;
+            SavedModel.updateRedirectMerchantUrl();
+
+            //System.Diagnostics.Debug.WriteLine(InputModel);
+            //System.Diagnostics.Debug.WriteLine(InputModel.RedirectMerchantUrl);
+
+            _context.SaveChanges();
+            return Redirect(SavedModel.RedirectMerchantUrl);
         }
 
-        public ActionResult RetrieveAccessToken(Demo client)
+        // step 3
+        public ActionResult RetrieveAccessToken(Demo InputModel)
         {
-            System.Diagnostics.Debug.WriteLine(client);
+            var SavedModel = _context.Demos.SingleOrDefault(d => d.Id == InputModel.Id);
+            SavedModel.GrantType = InputModel.GrantType;
+            SavedModel.Code = InputModel.Code;
+            SavedModel.ClientId = InputModel.ClientId;
+            SavedModel.ClientSecret = InputModel.ClientSecret;
+
+            //System.Diagnostics.Debug.WriteLine(InputModel);
 
             try
             {
                 RetrievingRefreshingApi instance = new RetrievingRefreshingApi();
-                var response = instance.GetToken(grantType: client.GrantType, clientId: client.Id, code: client.Code, clientSecret: client.Secret, platform: client.platform);
+                var response = instance.GetToken(grantType: SavedModel.GrantType, clientId: SavedModel.ClientId, code: SavedModel.Code, clientSecret: SavedModel.ClientSecret, platform: SavedModel.platform);
                 //System.Diagnostics.Debug.WriteLine(response.ToJson());
-                client.Step3Response = response.ToJson();
-                client.AccessToken = response.AccessToken;
-                client.RefreshToken = response.RefreshToken;
+                SavedModel.Step3Response = response.ToJson();
+                SavedModel.AccessToken = response.AccessToken;
+                SavedModel.RefreshToken = response.RefreshToken;
             }
             catch
             {
-                client.Step3Response = Demo.RetrieveErrorResponse;
+                SavedModel.Step3Response = Demo.RetrieveErrorResponse;
             }
 
-            return View("Index", client);
+            _context.SaveChanges();
+            return View("Index", SavedModel);
         }
-        public ActionResult ChargeCreditCard(Demo client)
+
+        // step 4
+        public ActionResult ChargeCreditCard(Demo InputModel)
         {
-            System.Diagnostics.Debug.WriteLine(client);
+            var SavedModel = _context.Demos.SingleOrDefault(d => d.Id == InputModel.Id);
+            SavedModel.AccessToken = InputModel.AccessToken;
+            SavedModel.Amount = InputModel.Amount;
+
+            //System.Diagnostics.Debug.WriteLine(client);
+
             try
             {
-                client.Step4Response = net.authorize.sample.ChargeCreditCard.Run(client.AccessToken, client.Amount);
+                SavedModel.Step4Response = net.authorize.sample.ChargeCreditCard.Run(SavedModel.AccessToken, SavedModel.Amount);
             }
             catch
             {
-                client.Step4Response = Demo.APICallErrorResponse;
+                SavedModel.Step4Response = Demo.APICallErrorResponse;
             }
 
-            return View("Index", client);
+            _context.SaveChanges();
+            return View("Index", SavedModel);
         }
 
-        public ActionResult RefreshAccessToken(Demo client)
+        // step 5
+        public ActionResult RefreshAccessToken(Demo InputModel)
         {
-            System.Diagnostics.Debug.WriteLine(client);
+            var SavedModel = _context.Demos.SingleOrDefault(d => d.Id == InputModel.Id);
+            SavedModel.ClientId = InputModel.ClientId;
+            SavedModel.ClientSecret = InputModel.ClientSecret;
+            SavedModel.GrantType = InputModel.GrantType;
+            SavedModel.RefreshToken = InputModel.RefreshToken;
+
+            //System.Diagnostics.Debug.WriteLine(client);
 
             try
             {
                 RetrievingRefreshingApi instance = new RetrievingRefreshingApi();
-                var response = instance.GetToken(grantType: client.GrantType, clientId: client.Id, refreshToken: client.RefreshToken);
+                var response = instance.GetToken(grantType: SavedModel.GrantType, clientId: SavedModel.ClientId, clientSecret: SavedModel.ClientSecret, refreshToken: SavedModel.RefreshToken);
                 //System.Diagnostics.Debug.WriteLine(response.ToJson());
-                client.Step5Response = response.ToJson();
+                SavedModel.Step5Response = response.ToJson();
             }
             catch
             {
-                client.Step5Response = Demo.RefreshErrorResponse;
+                SavedModel.Step5Response = Demo.RefreshErrorResponse;
             }
 
-            return View("Index", client);
+            _context.SaveChanges();
+            return View("Index", SavedModel);
         }
 
         public ActionResult RedirectRevokePermissions()

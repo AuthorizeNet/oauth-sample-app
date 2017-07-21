@@ -11,14 +11,16 @@
 
 @using (Html.BeginForm("RegisterApplication", "Demo", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
 {
+    @Html.HiddenFor(m => m.Id)
+
     <div class="form-group">
-        @Html.LabelFor(m => m.Id, new { @class = "col-md-2 control-label" })
+        @Html.LabelFor(m => m.ClientId, new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
-            @Html.TextBoxFor(m => m.Id, new { @class = "form-control", @readonly = "readonly", Value = Model.Id })
+            @Html.TextBoxFor(m => m.ClientId, new { @class = "form-control", @readonly = "readonly", Value = Model.ClientId })
         </div>
-        @Html.LabelFor(m => m.Secret, new { @class = "col-md-2 control-label" })
+        @Html.LabelFor(m => m.ClientSecret, new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
-            @Html.TextBoxFor(m => m.Secret, new { @class = "form-control", @readonly = "readonly", Value = Model.Secret })
+            @Html.TextBoxFor(m => m.ClientSecret, new { @class = "form-control", @readonly = "readonly", Value = Model.ClientSecret })
         </div>
     </div>
     <div class="form-group">
@@ -32,10 +34,12 @@
 <h4>Step 2. Redirecting the Merchant</h4>
 @using (Html.BeginForm("RedirectMerchant", "Demo", FormMethod.Post, new { @class = "form-horizontal", role = "form", target = "_blank" }))
 {
+    @Html.HiddenFor(m => m.Id)
+
     <div class="form-group">
-        @Html.LabelFor(m => m.Id, new { @class = "col-md-2 control-label" })
+        @Html.LabelFor(m => m.ClientId, new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
-            @Html.TextBoxFor(m => m.Id, new { @class = "form-control", @readonly = "readonly"})
+            @Html.TextBoxFor(m => m.ClientId, new { @class = "form-control", @readonly = "readonly"})
         </div>
         @Html.LabelFor(m => m.RedirectUri, new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
@@ -68,6 +72,8 @@
 <h4>Step 3. Retrieving the Access Token</h4>
 @using (Html.BeginForm("RetrieveAccessToken", "Demo", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
 {
+    @Html.HiddenFor(m => m.Id)
+
     <div class="form-group">
         @Html.LabelFor(m => m.GrantType, new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
@@ -77,13 +83,13 @@
         <div class="col-md-10">
             @Html.TextBoxFor(m => m.Code, new { @class = "form-control" })
         </div>
-        @Html.LabelFor(m => m.Id, new { @class = "col-md-2 control-label" })
+        @Html.LabelFor(m => m.ClientId, new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
-            @Html.TextBoxFor(m => m.Id, new { @class = "form-control", @readonly = "readonly"})
+            @Html.TextBoxFor(m => m.ClientId, new { @class = "form-control", @readonly = "readonly"})
         </div>
-        @Html.LabelFor(m => m.Secret, new { @class = "col-md-2 control-label" })
+        @Html.LabelFor(m => m.ClientSecret, new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
-            @Html.TextBoxFor(m => m.Secret, new { @class = "form-control", @readonly = "readonly"})
+            @Html.TextBoxFor(m => m.ClientSecret, new { @class = "form-control", @readonly = "readonly"})
         </div>
     </div>
     <div class="form-group">
@@ -101,23 +107,10 @@
 
 
 <h4>Step 4. Submitting API Requests</h4>
-@*@Html.HiddenFor(m => m.Id)
-    @Html.HiddenFor(m => m.Secret)
-    @Html.HiddenFor(m => m.RedirectUri)
-    @Html.HiddenFor(m => m.Scope)
-    @Html.HiddenFor(m => m.State)
-    @Html.HiddenFor(m => m.Sub)
-    @Html.HiddenFor(m => m.RedirectMerchantUrl)
-    @Html.HiddenFor(m => m.GrantType)
-    @Html.HiddenFor(m => m.Code)
-    @Html.HiddenFor(m => m.Step3Response)
-    @Html.HiddenFor(m => m.platform)
-    @Html.HiddenFor(m => m.RefreshToken)
-    @Html.HiddenFor(m => m.Step5Response)*@
-<p>//TODO: could use existing ANET api, or use existing swagger merged with token swagger or, cherrypick from existing swagger merged with token swagger  </p>
-
 @using (Html.BeginForm("ChargeCreditCard", "Demo", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
 {
+    @Html.HiddenFor(m => m.Id)
+
     <div class="form-group">
         @Html.LabelFor(m => m.AccessToken, new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
@@ -127,6 +120,7 @@
         <div class="col-md-10">
             @Html.TextBoxFor(m => m.Amount, new { @class = "form-control"})
         </div>
+        @Html.HiddenFor(m => m.Id)
     </div>
     <div class="form-group">
         <div class="col-md-offset-2 col-md-10">
@@ -145,10 +139,16 @@
 <h4>Step 5. Refreshing the Access Token</h4>
 @using (Html.BeginForm("RefreshAccessToken", "Demo", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
 {
+    @Html.HiddenFor(m => m.Id)
+
     <div class="form-group">
-        @Html.LabelFor(m => m.Id, new { @class = "col-md-2 control-label" })
+        @Html.LabelFor(m => m.ClientId, new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
-            @Html.TextBoxFor(m => m.Id, new { @class = "form-control", @readonly = "readonly"})
+            @Html.TextBoxFor(m => m.ClientId, new { @class = "form-control", @readonly = "readonly"})
+        </div>
+        @Html.LabelFor(m => m.ClientSecret, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.ClientSecret, new { @class = "form-control", @readonly = "readonly" })
         </div>
         @Html.LabelFor(m => m.GrantType, new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
@@ -177,6 +177,8 @@
 <h4>Revoking Permissions</h4>
 @using (Html.BeginForm("RedirectRevokePermissions", "Demo", FormMethod.Post, new { @class = "form-horizontal", role = "form", target = "_blank" }))
 {
+    @Html.HiddenFor(m => m.Id)
+
     <div class="form-group">
         <div class="col-md-offset-2 col-md-10">
             <input type="submit" class="btn btn-default" value="Redirect to Revoke" />

@@ -16,8 +16,8 @@ namespace OAuthDemo.Models
 
         public Demo()
         {
-            Id = "4dp5b7gRqk";
-            Secret = "fa3a5b16753d09b24bb44243605a4a98";
+            ClientId = "4dp5b7gRqk";
+            ClientSecret = "fa3a5b16753d09b24bb44243605a4a98";
             RedirectUri = "https://developer.authorize.net/api/reference/index.html";
             Scope = "read,write";
             State = "someValue";
@@ -25,11 +25,18 @@ namespace OAuthDemo.Models
             updateRedirectMerchantUrl();
             GrantType = "authorization_code";
             platform = 2;
+            Amount = 5.00m;
+        }
+        public Demo(string InputId) : this()
+        {
+            Id = InputId;
         }
 
-        // Step 1
         public string Id { get; set; }
-        public string Secret { get; set; }
+
+        // Step 1
+        public string ClientId { get; set; }
+        public string ClientSecret { get; set; }
 
         // Step 2
         public string RedirectUri { get; set; }
@@ -40,7 +47,7 @@ namespace OAuthDemo.Models
         public void updateRedirectMerchantUrl()
         {
             RedirectMerchantUrl = "https://sandbox.authorize.net/oauth/authorize" +
-                "?" + "client_id=" + Id +
+                "?" + "client_id=" + ClientId +
                 "&" + "redirect_uri=" + RedirectUri +
                 "&" + "scope=" + Scope +
                 "&" + "state=" + State +
@@ -63,8 +70,8 @@ namespace OAuthDemo.Models
 
         override public string ToString()
         {   
-            return "\nId: " + Id + 
-                "\nSecret: " + Secret + 
+            return "\nId: " + ClientId + 
+                "\nSecret: " + ClientSecret + 
                 "\nRedirectUri: " + RedirectUri + 
                 "\nScope: " + Scope + 
                 "\nState: " + State + 
