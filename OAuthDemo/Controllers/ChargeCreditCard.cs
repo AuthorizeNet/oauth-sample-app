@@ -11,7 +11,7 @@ namespace net.authorize.sample
 {
     public class ChargeCreditCard
     {
-        public static String Run(String AccessToken, decimal amount)
+        public static String Run(String AccessToken, String CardNumber, DateTime ExpirationDate, decimal Amount)
         {
             Console.WriteLine("Charge Credit Card Sample");
 
@@ -26,8 +26,8 @@ namespace net.authorize.sample
 
             var creditCard = new creditCardType
             {
-                cardNumber = "4111111111111111",
-                expirationDate = "0718",
+                cardNumber = CardNumber,
+                expirationDate = ExpirationDate.ToString("MMyy"),
                 cardCode = "123"
             };
 
@@ -37,7 +37,7 @@ namespace net.authorize.sample
                 lastName = "Doe",
                 address = "123 My St",
                 city = "OurTown",
-                zip = "98004"
+                zip = "99091"
             };
 
             //standard api call to retrieve response
@@ -52,7 +52,7 @@ namespace net.authorize.sample
             {
                 transactionType = transactionTypeEnum.authCaptureTransaction.ToString(),    // charge the card
 
-                amount = amount,
+                amount = Amount,
                 payment = paymentType,
                 billTo = billingAddress,
                 lineItems = lineItems

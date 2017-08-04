@@ -86,13 +86,19 @@ namespace OAuthDemo.Controllers
         {
             var SavedModel = _context.Demos.SingleOrDefault(d => d.Id == InputModel.Id);
             SavedModel.AccessToken = InputModel.AccessToken;
+            SavedModel.CardNumber = InputModel.CardNumber;
+            SavedModel.ExpirationDate = InputModel.ExpirationDate;
             SavedModel.Amount = InputModel.Amount;
 
             //System.Diagnostics.Debug.WriteLine(client);
 
             try
             {
-                SavedModel.Step4Response = net.authorize.sample.ChargeCreditCard.Run(SavedModel.AccessToken, SavedModel.Amount);
+                SavedModel.Step4Response = net.authorize.sample.ChargeCreditCard.Run(
+                    SavedModel.AccessToken, 
+                    SavedModel.CardNumber, 
+                    SavedModel.ExpirationDate, 
+                    SavedModel.Amount);
             }
             catch
             {

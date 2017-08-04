@@ -158,10 +158,17 @@
                     <div class="col-md-10">
                         @Html.TextBoxFor(m => m.AccessToken, new {@class = "form-control"})
                     </div>
-                    @Html.LabelFor(m => m.Amount, new {@class = "col-md-2 control-label"})
+                    @Html.LabelFor(m => m.CardNumber, new {@class = "col-md-2 control-label"})
                     <div class="col-md-10">
-                        @Html.TextBoxFor(m => m.Amount, new {@class = "form-control", Value = String.Format("{0:C}", Model.Amount) })
-
+                        @Html.TextBoxFor(m => m.CardNumber, new {@class = "form-control"})
+                    </div>
+                    @Html.LabelFor(m => m.ExpirationDate, new { @class = "col-md-2 control-label" })
+                    <div class="col-md-10">
+                        @Html.TextBoxFor(m => m.ExpirationDate, new {@class = "form-control", Value = Model.ExpirationDate.ToString("MM/yy") })
+                    </div>
+                    @Html.LabelFor(m => m.Amount, new { @class = "col-md-2 control-label"})
+                    <div class="col-md-10">
+                        @Html.TextBoxFor(m => m.Amount, new { @class = "form-control", Value = String.Format("{0:C}", Model.Amount) })
                     </div>
                     @Html.HiddenFor(m => m.Id)
                 </div>

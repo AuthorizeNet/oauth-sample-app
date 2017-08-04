@@ -216,6 +216,14 @@
     <Compile Include="Migrations\201708040035023_readwrite.Designer.cs">
       <DependentUpon>201708040035023_readwrite.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201708041729087_readwrite1.cs" />
+    <Compile Include="Migrations\201708041729087_readwrite1.Designer.cs">
+      <DependentUpon>201708041729087_readwrite1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201708041745214_readwrite2.cs" />
+    <Compile Include="Migrations\201708041745214_readwrite2.Designer.cs">
+      <DependentUpon>201708041745214_readwrite2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\DemoModels.cs" />
@@ -323,6 +331,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201708040035023_readwrite.resx">
       <DependentUpon>201708040035023_readwrite.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201708041729087_readwrite1.resx">
+      <DependentUpon>201708041729087_readwrite1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201708041745214_readwrite2.resx">
+      <DependentUpon>201708041745214_readwrite2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

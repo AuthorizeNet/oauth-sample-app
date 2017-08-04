@@ -26,6 +26,8 @@ namespace OAuthDemo.Models
             updateRedirectMerchantUrl();
             GrantType = "authorization_code";
             platform = 2;
+            CardNumber = "5424000000000015";
+            ExpirationDate = DateTime.Now.AddYears(1);
             Amount = Convert.ToDecimal(DateTime.Now.ToString("mm.ss"));
         }
         public Demo(string InputId) : this()
@@ -72,6 +74,10 @@ namespace OAuthDemo.Models
         public int? platform { get; set; }
         // Step 4
         public string AccessToken { get; set; }
+        public string CardNumber { get; set; }
+        [DisplayFormat(DataFormatString = "{MM/yy}",
+               ApplyFormatInEditMode = true)]
+        public DateTime ExpirationDate { get; set; }
         public decimal Amount { get; set; }
         public string Step4Response { get; set; }
 
