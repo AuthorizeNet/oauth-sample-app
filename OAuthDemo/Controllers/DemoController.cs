@@ -27,6 +27,11 @@ namespace OAuthDemo.Controllers
             return View(DemoModel);
         }
 
+        public ActionResult RegisterApplication()
+        {
+            return null;
+        }
+
         // step 2
         public ActionResult RedirectMerchant(Demo InputModel)
         {
@@ -34,7 +39,8 @@ namespace OAuthDemo.Controllers
             var SavedModel = _context.Demos.SingleOrDefault(d => d.Id == InputModel.Id);
             SavedModel.ClientId = InputModel.ClientId;
             SavedModel.RedirectUri = InputModel.RedirectUri;
-            SavedModel.Scope = InputModel.Scope;
+            SavedModel.Read = InputModel.Read;
+            SavedModel.Write = InputModel.Write;
             SavedModel.State = InputModel.State;
             SavedModel.Sub = InputModel.Sub;
             SavedModel.updateRedirectMerchantUrl();

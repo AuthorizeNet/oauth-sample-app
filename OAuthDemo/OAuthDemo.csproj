@@ -212,6 +212,10 @@
     <Compile Include="Migrations\201707211919446_IdFix1.Designer.cs">
       <DependentUpon>201707211919446_IdFix1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201708040035023_readwrite.cs" />
+    <Compile Include="Migrations\201708040035023_readwrite.Designer.cs">
+      <DependentUpon>201708040035023_readwrite.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\DemoModels.cs" />
@@ -317,6 +321,14 @@
     <EmbeddedResource Include="Migrations\201707211919446_IdFix1.resx">
       <DependentUpon>201707211919446_IdFix1.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201708040035023_readwrite.resx">
+      <DependentUpon>201708040035023_readwrite.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Analyzer Include="..\packages\SonarAnalyzer.CSharp.6.2.0.2536\analyzers\Google.Protobuf.dll" />
+    <Analyzer Include="..\packages\SonarAnalyzer.CSharp.6.2.0.2536\analyzers\SonarAnalyzer.CSharp.dll" />
+    <Analyzer Include="..\packages\SonarAnalyzer.CSharp.6.2.0.2536\analyzers\SonarAnalyzer.dll" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

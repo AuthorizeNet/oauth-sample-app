@@ -19,13 +19,14 @@ namespace OAuthDemo.Models
             ClientId = "4dp5b7gRqk";
             ClientSecret = "fa3a5b16753d09b24bb44243605a4a98";
             RedirectUri = "https://developer.authorize.net/api/reference/index.html";
-            Scope = "read,write";
+            Read = true;
+            Write = true;
             State = "someValue";
             Sub = "oauth";
             updateRedirectMerchantUrl();
             GrantType = "authorization_code";
             platform = 2;
-            Amount = 5.00m;
+            Amount = Convert.ToDecimal(DateTime.Now.ToString("mm.ss"));
         }
         public Demo(string InputId) : this()
         {
@@ -40,16 +41,26 @@ namespace OAuthDemo.Models
 
         // Step 2
         public string RedirectUri { get; set; }
-        public string Scope { get; set; }
+        public bool Read { get; set; }
+        public bool Write { get; set; }
+
         public string State { get; set; }
         public string Sub { get; set; }
         public string RedirectMerchantUrl;
         public void updateRedirectMerchantUrl()
         {
+            string scope;
+            if (Read && Write)
+                scope = "read,write";
+            else if (Read)
+                scope = "read";
+            else
+                scope = "write";
+
             RedirectMerchantUrl = "https://sandbox.authorize.net/oauth/authorize" +
                 "?" + "client_id=" + ClientId +
                 "&" + "redirect_uri=" + RedirectUri +
-                "&" + "scope=" + Scope +
+                "&" + "scope=" + scope +
                 "&" + "state=" + State +
                 "&" + "sub=" + Sub;
         }
@@ -72,8 +83,9 @@ namespace OAuthDemo.Models
         {   
             return "\nId: " + ClientId + 
                 "\nSecret: " + ClientSecret + 
-                "\nRedirectUri: " + RedirectUri + 
-                "\nScope: " + Scope + 
+                "\nRedirectUri: " + RedirectUri +
+                "\nRead: " + Read +
+                "\nWrite: " + Write +
                 "\nState: " + State + 
                 "\nSub: " + Sub + 
                 "\nGrantType: " + GrantType + 
