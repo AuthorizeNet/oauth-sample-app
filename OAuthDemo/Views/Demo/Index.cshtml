@@ -1,5 +1,5 @@
 ﻿@model OAuthDemo.Models.Demo
-<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 @{
     ViewBag.Title = "Authenticating API Requests With OAuth 2.0";
     ViewBag.Message = "Use the tabs below to complete the authentication demo";
@@ -17,7 +17,7 @@
     </ul>
 
     <div class="tab-content">
-        <div id="step1" class="tab-pane fade active">
+        <div id="step1" class="tab-pane active">
             <h4>Step 1. Registering Your Application</h4>
             <h5>
                 <p>
@@ -260,7 +260,20 @@
 
 <script>
     $(document).ready(function () {
-        activaTab();
+
+        if (window.location.pathname === "/Demo")
+            activaTab("step1");
+        else if (window.location.pathname === "/Demo/RedirectMerchant")
+            activaTab("step2");
+        else if (window.location.pathname === "/Demo/RetrieveAccessToken")
+            activaTab("step3");
+        else if (window.location.pathname === "/Demo/ChargeCreditCard")
+            activaTab("step4");
+        else if (window.location.pathname === "/Demo/RefreshAccessToken")
+            activaTab("step5");
+        else if (window.location.pathname === "/Demo/RedirectRevokePermissions")
+            activaTab("step6");
+
         $('.cont').click(function () {
             $('.nav-tabs > .active').next('li').find('a').trigger('click');
         });
