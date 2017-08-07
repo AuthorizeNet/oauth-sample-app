@@ -109,6 +109,30 @@ namespace OAuthDemo.Controllers
             return View("Index", SavedModel);
         }
 
+        public ActionResult GetTransactionDetails(Demo InputModel)
+        {
+            var SavedModel = _context.Demos.SingleOrDefault(d => d.Id == InputModel.Id);
+            SavedModel.AccessToken = InputModel.AccessToken;
+            SavedModel.TransactionId = InputModel.TransactionId;
+
+            //System.Diagnostics.Debug.WriteLine(client);
+
+            try
+            {
+                SavedModel.Step4Response = net.authorize.sample.GetTransactionDetails.Run(
+                    SavedModel.AccessToken,
+                    SavedModel.TransactionId
+                    );
+            }
+            catch
+            {
+                SavedModel.Step4Response = Demo.APICallErrorResponse;
+            }
+
+            _context.SaveChanges();
+            return View("Index", SavedModel);
+        }
+
         // step 5
         public ActionResult RefreshAccessToken(Demo InputModel)
         {

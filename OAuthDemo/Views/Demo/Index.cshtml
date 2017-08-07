@@ -149,150 +149,194 @@
         </div>
         <div id="step4" class="tab-pane fade">
             <h4>Step 4. Submitting API Requests</h4>
-            @using (Html.BeginForm("ChargeCreditCard", "Demo", FormMethod.Post, new {@class = "form-horizontal", role = "form"}))
-            {
-                @Html.HiddenFor(m => m.Id)
+                <div class="container">
+                    <ul class="nav nav-pills nav-justified">
+                        <li class="active"><a data-toggle="pill" href="#write">Write</a></li>
+                        <li><a data-toggle="pill" href="#read">Read</a></li>
+                    </ul>
 
-                <div class="form-group">
-                    @Html.LabelFor(m => m.AccessToken, new {@class = "col-md-2 control-label"})
-                    <div class="col-md-10">
-                        @Html.TextBoxFor(m => m.AccessToken, new {@class = "form-control"})
+                    <div class="tab-content">
+                        <div id="write" class="tab-pane fade in active">
+                            <h3>Write</h3>
+                            <p>
+                                Use the following fields to make a card transaction.
+                            </p>
+                            @using (Html.BeginForm("ChargeCreditCard", "Demo", FormMethod.Post, new {@class = "form-horizontal", role = "form"}))
+                            {
+                                @Html.HiddenFor(m => m.Id)
+
+                                <div class="form-group">
+                                    @Html.LabelFor(m => m.AccessToken, new {@class = "col-md-2 control-label"})
+                                    <div class="col-md-10">
+                                        @Html.TextBoxFor(m => m.AccessToken, new {@class = "form-control"})
+                                    </div>
+                                    @Html.LabelFor(m => m.CardNumber, new {@class = "col-md-2 control-label"})
+                                    <div class="col-md-10">
+                                        @Html.TextBoxFor(m => m.CardNumber, new {@class = "form-control"})
+                                    </div>
+                                    @Html.LabelFor(m => m.ExpirationDate, new {@class = "col-md-2 control-label"})
+                                    <div class="col-md-10">
+                                        @Html.TextBoxFor(m => m.ExpirationDate, new {@class = "form-control", Value = Model.ExpirationDate.ToString("MM/yy")})
+                                    </div>
+                                    @Html.LabelFor(m => m.Amount, new {@class = "col-md-2 control-label"})
+                                    <div class="col-md-10">
+                                        @Html.TextBoxFor(m => m.Amount, new {@class = "form-control", Value = String.Format("{0:C}", Model.Amount)})
+                                    </div>
+                                    @Html.HiddenFor(m => m.Id)
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-md-offset-2 col-md-10">
+                                        <input type="submit" class="btn btn-default" value="Submit Transaction"/>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                        <div id="read" class="tab-pane fade">
+                            <h3>Read</h3>
+                            <p>
+                                Use the button below to retrieve transaction history.
+                            </p>
+                            @using (Html.BeginForm("GetTransactionDetails", "Demo", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                            {
+                                @Html.HiddenFor(m => m.Id)
+
+                                <div class="form-group">
+                                    @Html.LabelFor(m => m.AccessToken, new { @class = "col-md-2 control-label" })
+                                    <div class="col-md-10">
+                                        @Html.TextBoxFor(m => m.AccessToken, new {@class = "form-control"})
+                                    </div>
+                                    @Html.LabelFor(m => m.TransactionId, new { @class = "col-md-2 control-label" })
+                                    <div class="col-md-10">
+                                        @Html.TextBoxFor(m => m.TransactionId, new { @class = "form-control" })
+                                    </div>
+                                    <div class="col-md-offset-2 col-md-10">
+                                        <input type="submit" class="btn btn-default" value="Get Transactions"/>
+                                    </div>
+                                </div>
+                            }
+                        </div>
                     </div>
-                    @Html.LabelFor(m => m.CardNumber, new {@class = "col-md-2 control-label"})
-                    <div class="col-md-10">
-                        @Html.TextBoxFor(m => m.CardNumber, new {@class = "form-control"})
-                    </div>
-                    @Html.LabelFor(m => m.ExpirationDate, new { @class = "col-md-2 control-label" })
-                    <div class="col-md-10">
-                        @Html.TextBoxFor(m => m.ExpirationDate, new {@class = "form-control", Value = Model.ExpirationDate.ToString("MM/yy") })
-                    </div>
-                    @Html.LabelFor(m => m.Amount, new { @class = "col-md-2 control-label"})
-                    <div class="col-md-10">
-                        @Html.TextBoxFor(m => m.Amount, new { @class = "form-control", Value = String.Format("{0:C}", Model.Amount) })
-                    </div>
-                    @Html.HiddenFor(m => m.Id)
                 </div>
                 <div class="form-group">
                     <div class="col-md-offset-2 col-md-10">
-                        <input type="submit" class="btn btn-default" value="Submit Transaction"/>
+                        <p>Response:</p>
+                        @Html.TextArea("Step4Response", null, new { rows = 10, cols = 500, value = Model.Step4Response })
                     </div>
                 </div>
-            }
 
-            <div class="form-group">
-                <div class="col-md-offset-2 col-md-10">
-                    <p>Response:</p>
-                    @Html.TextArea("Step4Response", null, new {rows = 10, cols = 500, value = Model.Step4Response})
+                <a class="btn btn-default cont" href="#">Continue</a>
+            </div>
+
+                    <div id="step5" class="tab-pane fade">
+                        <h4>Step 5. Refreshing the Access Token</h4>
+                        <h5>
+                            <p>
+                                Use the refresh token you obtained in step 3 to retrieve a new pair of tokens
+                            </p>
+                        </h5>
+                        @using (Html.BeginForm("RefreshAccessToken", "Demo", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                        {
+                            @Html.HiddenFor(m => m.Id)
+
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.ClientId, new { @class = "col-md-2 control-label" })
+                                <div class="col-md-10">
+                                    @Html.TextBoxFor(m => m.ClientId, new { @class = "form-control", @readonly = "readonly" })
+                                </div>
+                                @Html.LabelFor(m => m.ClientSecret, new { @class = "col-md-2 control-label" })
+                                <div class="col-md-10">
+                                    @Html.TextBoxFor(m => m.ClientSecret, new { @class = "form-control", @readonly = "readonly" })
+                                </div>
+                                @Html.LabelFor(m => m.GrantType, new { @class = "col-md-2 control-label" })
+                                <div class="col-md-10">
+                                    @Html.TextBoxFor(m => m.GrantType, new { @class = "form-control", @readonly = "readonly", Value = "refresh_token" })
+                                </div>
+                                @Html.LabelFor(m => m.RefreshToken, new { @class = "col-md-2 control-label" })
+                                <div class="col-md-10">
+                                    @Html.TextBoxFor(m => m.RefreshToken, new { @class = "form-control" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="col-md-offset-2 col-md-10">
+                                    <input type="submit" class="btn btn-default" value="Submit Token Refresh" />
+                                </div>
+                            </div>
+                        }
+
+                        <div class="form-group">
+                            <div class="col-md-offset-2 col-md-10">
+                                <p>Response:</p>
+                                @Html.TextArea("Step5Response", null, new { cols = "500", rows = "10" })
+                            </div>
+                        </div>
+                        <a class="btn btn-default cont" href="#">Continue</a>
+                    </div>
+                    <div id="step6" class="tab-pane fade">
+                        <h4>Step 6: Revoking Permissions</h4>
+                        <h5>
+                            <p>
+                                If the merchant revokes a solution’s permissions in the
+                                Authorize.Net merchant interface, the refresh token is revoked immediately.
+                                Any previously issued access token will be valid till they expire. No new access token can be generated.
+                            </p>
+                            <p>
+                                Use this link to be directed to the mercant interface where you may revoke permissions
+                            </p>
+                        </h5>
+                        @using (Html.BeginForm("RedirectRevokePermissions", "Demo", FormMethod.Post, new { @class = "form-horizontal", role = "form", target = "_blank" }))
+                        {
+                            @Html.HiddenFor(m => m.Id)
+
+                            <div class="form-group">
+                                <div class="col-md-offset-2 col-md-10">
+                                    <input type="submit" class="btn btn-default" value="Redirect to Revoke" />
+                                </div>
+                            </div>
+                        }
+                    </div>
                 </div>
             </div>
-            <a class="btn btn-default cont" href="#">Continue</a>
-        </div>
-        <div id="step5" class="tab-pane fade">
-            <h4>Step 5. Refreshing the Access Token</h4>
-            <h5>
-                <p>
-                    Use the refresh token you obtained in step 3 to retrieve a new pair of tokens
-                </p>
-            </h5>
-            @using (Html.BeginForm("RefreshAccessToken", "Demo", FormMethod.Post, new {@class = "form-horizontal", role = "form"}))
-            {
-                @Html.HiddenFor(m => m.Id)
 
-                <div class="form-group">
-                    @Html.LabelFor(m => m.ClientId, new {@class = "col-md-2 control-label"})
-                    <div class="col-md-10">
-                        @Html.TextBoxFor(m => m.ClientId, new {@class = "form-control", @readonly = "readonly"})
-                    </div>
-                    @Html.LabelFor(m => m.ClientSecret, new {@class = "col-md-2 control-label"})
-                    <div class="col-md-10">
-                        @Html.TextBoxFor(m => m.ClientSecret, new {@class = "form-control", @readonly = "readonly"})
-                    </div>
-                    @Html.LabelFor(m => m.GrantType, new {@class = "col-md-2 control-label"})
-                    <div class="col-md-10">
-                        @Html.TextBoxFor(m => m.GrantType, new {@class = "form-control", @readonly = "readonly", Value = "refresh_token"})
-                    </div>
-                    @Html.LabelFor(m => m.RefreshToken, new {@class = "col-md-2 control-label"})
-                    <div class="col-md-10">
-                        @Html.TextBoxFor(m => m.RefreshToken, new {@class = "form-control"})
-                    </div>
-                </div>
+            <script>
+                $(document).ready(function () {
 
-                <div class="form-group">
-                    <div class="col-md-offset-2 col-md-10">
-                        <input type="submit" class="btn btn-default" value="Submit Token Refresh"/>
-                    </div>
-                </div>
-            }
+                    if (window.location.pathname === "/Demo")
+                        activaTab("step1");
+                    else if (window.location.pathname === "/Demo/RedirectMerchant")
+                        activaTab("step2");
+                    else if (window.location.pathname === "/Demo/RetrieveAccessToken")
+                        activaTab("step3");
+                    else if (window.location.pathname === "/Demo/ChargeCreditCard")
+                        activaTab("step4");
+                    else if (window.location.pathname === "/Demo/GetTransactionDetails") {
+                        activaTab("step4");
+                        $('.nav-pills a[href="#read"]').tab('show');
+                    }
+                    else if (window.location.pathname === "/Demo/RefreshAccessToken")
+                        activaTab("step5");
+                    else if (window.location.pathname === "/Demo/RedirectRevokePermissions")
+                        activaTab("step6");
 
-            <div class="form-group">
-                <div class="col-md-offset-2 col-md-10">
-                    <p>Response:</p>
-                    @Html.TextArea("Step5Response", null, new {cols = "500", rows = "10"})
-                </div>
-            </div>
-            <a class="btn btn-default cont" href="#">Continue</a>
-        </div>
-        <div id="step6" class="tab-pane fade">
-            <h4>Step 6: Revoking Permissions</h4>
-            <h5>
-                <p>
-                    If the merchant revokes a solution’s permissions in the
-                    Authorize.Net merchant interface, the refresh token is revoked immediately.
-                    Any previously issued access token will be valid till they expire. No new access token can be generated.
-                </p>
-                <p>
-                    Use this link to be directed to the mercant interface where you may revoke permissions
-                </p>
-            </h5>
-            @using (Html.BeginForm("RedirectRevokePermissions", "Demo", FormMethod.Post, new {@class = "form-horizontal", role = "form", target = "_blank"}))
-            {
-                @Html.HiddenFor(m => m.Id)
+                    $('.cont').click(function () {
+                        $('.nav-tabs > .active').next('li').find('a').trigger('click');
+                    });
+                    function activaTab(tab) {
+                        $('.nav-tabs a[href="#' + tab + '"]').tab('show');
+                    };
+                    $('#myTab a').click(function (e) {
+                        e.preventDefault();
+                        $(this).tab('show');
+                    });
 
-                <div class="form-group">
-                    <div class="col-md-offset-2 col-md-10">
-                        <input type="submit" class="btn btn-default" value="Redirect to Revoke"/>
-                    </div>
-                </div>
-            }
-        </div>
-    </div>
-</div>
+                    // store the currently selected tab in the hash value
+                    $("ul.nav-tabs > li > a").on("shown.bs.tab", function (e) {
+                        var id = $(e.target).attr("href").substr(1);
+                        window.location.hash = id;
+                    });
 
-<script>
-    $(document).ready(function () {
-
-        if (window.location.pathname === "/Demo")
-            activaTab("step1");
-        else if (window.location.pathname === "/Demo/RedirectMerchant")
-            activaTab("step2");
-        else if (window.location.pathname === "/Demo/RetrieveAccessToken")
-            activaTab("step3");
-        else if (window.location.pathname === "/Demo/ChargeCreditCard")
-            activaTab("step4");
-        else if (window.location.pathname === "/Demo/RefreshAccessToken")
-            activaTab("step5");
-        else if (window.location.pathname === "/Demo/RedirectRevokePermissions")
-            activaTab("step6");
-
-        $('.cont').click(function () {
-            $('.nav-tabs > .active').next('li').find('a').trigger('click');
-        });
-        function activaTab(tab) {
-            $('.nav-tabs a[href="#' + tab + '"]').tab('show');
-        };
-        $('#myTab a').click(function (e) {
-            e.preventDefault();
-            $(this).tab('show');
-        });
-
-        // store the currently selected tab in the hash value
-        $("ul.nav-tabs > li > a").on("shown.bs.tab", function (e) {
-            var id = $(e.target).attr("href").substr(1);
-            window.location.hash = id;
-        });
-
-        // on load of the page: switch to the currently selected tab
-        var hash = window.location.hash;
-        $('#myTab a[href="' + hash + '"]').tab('show');
-    });
-</script>
+                    // on load of the page: switch to the currently selected tab
+                    var hash = window.location.hash;
+                    $('#myTab a[href="' + hash + '"]').tab('show');
+                });
+            </script>

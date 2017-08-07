@@ -29,6 +29,7 @@ namespace OAuthDemo.Models
             CardNumber = "5424000000000015";
             ExpirationDate = DateTime.Now.AddYears(1);
             Amount = Convert.ToDecimal(DateTime.Now.ToString("mm.ss"));
+            TransactionId = "60027723161";
         }
         public Demo(string InputId) : this()
         {
@@ -79,6 +80,7 @@ namespace OAuthDemo.Models
                ApplyFormatInEditMode = true)]
         public DateTime ExpirationDate { get; set; }
         public decimal Amount { get; set; }
+        public string TransactionId { get; set; }
         public string Step4Response { get; set; }
 
         // Step 5
