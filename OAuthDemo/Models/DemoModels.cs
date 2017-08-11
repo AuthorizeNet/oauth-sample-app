@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Configuration;
 using System.Linq;
 using System.Web;
 
@@ -8,11 +9,16 @@ namespace OAuthDemo.Models
 {
     public class Demo
     {
-        public static string RetrieveErrorResponse = "Error Retrieving the Access Token";
-        public static string RefreshErrorResponse = "Error Refreshing the Access Token";
-        public static string APICallErrorResponse = "Error Calling ANet API";
-        public static string RevokePermissionsUrl = "https://sandbox.authorize.net/UI/themes/sandbox/Settings/ResellerDelegation.aspx";
+        public const string RetrieveErrorResponse = "Error Retrieving the Access Token";
+        public const string RefreshErrorResponse = "Error Refreshing the Access Token";
+        public const string APICallErrorResponse = "Error Calling ANet API";
+        public static readonly string RevokePermissionsUrl;
 
+        static Demo()
+        {
+            //TODO: finish other responses
+            RevokePermissionsUrl = ConfigurationManager.AppSettings["revokeUrl"];
+        }
 
         public Demo()
         {
@@ -49,7 +55,7 @@ namespace OAuthDemo.Models
 
         public string State { get; set; }
         public string Sub { get; set; }
-        public string RedirectMerchantUrl;
+        public string RedirectMerchantUrl { get; set; }
         public void updateRedirectMerchantUrl()
         {
             string scope;

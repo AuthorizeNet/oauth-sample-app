@@ -13,7 +13,7 @@ namespace OAuthDemo.Controllers
 {
     public class DemoController : Controller
     {
-        private ApplicationDbContext _context;
+        private readonly ApplicationDbContext _context;
         public DemoController()
         {
             _context = new ApplicationDbContext();
@@ -45,9 +45,6 @@ namespace OAuthDemo.Controllers
             SavedModel.Sub = InputModel.Sub;
             SavedModel.updateRedirectMerchantUrl();
 
-            //System.Diagnostics.Debug.WriteLine(InputModel);
-            //System.Diagnostics.Debug.WriteLine(InputModel.RedirectMerchantUrl);
-
             _context.SaveChanges();
             return Redirect(SavedModel.RedirectMerchantUrl);
         }
@@ -61,13 +58,10 @@ namespace OAuthDemo.Controllers
             SavedModel.ClientId = InputModel.ClientId;
             SavedModel.ClientSecret = InputModel.ClientSecret;
 
-            //System.Diagnostics.Debug.WriteLine(InputModel);
-
             try
             {
                 RetrievingRefreshingApi instance = new RetrievingRefreshingApi();
                 var response = instance.GetToken(grantType: SavedModel.GrantType, clientId: SavedModel.ClientId, code: SavedModel.Code, clientSecret: SavedModel.ClientSecret, platform: SavedModel.platform);
-                //System.Diagnostics.Debug.WriteLine(response.ToJson());
                 SavedModel.Step3Response = response.ToJson();
                 SavedModel.AccessToken = response.AccessToken;
                 SavedModel.RefreshToken = response.RefreshToken;
@@ -89,8 +83,6 @@ namespace OAuthDemo.Controllers
             SavedModel.CardNumber = InputModel.CardNumber;
             SavedModel.ExpirationDate = InputModel.ExpirationDate;
             SavedModel.Amount = InputModel.Amount;
-
-            //System.Diagnostics.Debug.WriteLine(client);
 
             try
             {
@@ -114,8 +106,6 @@ namespace OAuthDemo.Controllers
             var SavedModel = _context.Demos.SingleOrDefault(d => d.Id == InputModel.Id);
             SavedModel.AccessToken = InputModel.AccessToken;
             SavedModel.TransactionId = InputModel.TransactionId;
-
-            //System.Diagnostics.Debug.WriteLine(client);
 
             try
             {
@@ -142,13 +132,10 @@ namespace OAuthDemo.Controllers
             SavedModel.GrantType = InputModel.GrantType;
             SavedModel.RefreshToken = InputModel.RefreshToken;
 
-            //System.Diagnostics.Debug.WriteLine(client);
-
             try
             {
                 RetrievingRefreshingApi instance = new RetrievingRefreshingApi();
                 var response = instance.GetToken(grantType: SavedModel.GrantType, clientId: SavedModel.ClientId, clientSecret: SavedModel.ClientSecret, refreshToken: SavedModel.RefreshToken);
-                //System.Diagnostics.Debug.WriteLine(response.ToJson());
                 SavedModel.Step5Response = response.ToJson();
             }
             catch

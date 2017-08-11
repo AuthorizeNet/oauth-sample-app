@@ -20,12 +20,9 @@
         <div id="step1" class="tab-pane active">
             <h4>Step 1. Registering Your Application</h4>
             <h5>
-                <p>
-                    Before configuring your application, contact the Authorize.Net support team at affiliate@authorize.net. You will provide a redirect URL and obtain a client ID and client secret.
-                </p>
-                <p>
-                    These values are used in the next step. An application has already been registered for this demo.
-                </p>
+                Before configuring your application, contact the Authorize.Net support team at affiliate@authorize.net. You will provide a redirect URL and obtain a client ID and client secret.
+                <br/>
+                These values are used in the next step. An application has already been registered for this demo.
             </h5>
 
             @using (Html.BeginForm("RegisterApplication", "Demo", FormMethod.Post, new {@class = "form-horizontal", role = "form" }))
@@ -53,14 +50,11 @@
         <div id="step2" class="tab-pane fade">
             <h4>Step 2. Redirecting the Merchant</h4>
             <h5>
-                <p>
-                    When the merchant arrives at the third party site, the merchant must redirect them to Authorize.Net so that they can log in
-                    with their credentials and authorize the application to perform certain actions on their behalf. Use the fields below to create a link that will
-                    redirect the merchant with the appropriate parameters.
-                </p>
-                <p>
-                     After the merchant has signed in and allowed the application access, the code in from the URI in the new tab must be copied into the next step.
-                </p>
+                When the merchant arrives at the third party site, the merchant must redirect them to Authorize.Net so that they can log in
+                with their credentials and authorize the application to perform certain actions on their behalf. Use the fields below to create a link that will
+                redirect the merchant with the appropriate parameters.
+                <br/>
+                After the merchant has signed in and allowed the application access, the code in from the URI in the new tab must be copied into the next step.
             </h5>
             @using (Html.BeginForm("RedirectMerchant", "Demo", FormMethod.Post, new {@class = "form-horizontal", role = "form", target = "_blank"}))
             {
@@ -107,9 +101,7 @@
         <div id="step3" class="tab-pane fade">
             <h4>Step 3. Retrieving the Access Token</h4>
             <h5>
-                <p>
-                    Use the authorization code that you obtained in step 2 to retrieve an access token and a refresh token 
-                </p>
+                Use the authorization code that you obtained in step 2 to retrieve an access token and a refresh token 
             </h5>
             @using (Html.BeginForm("RetrieveAccessToken", "Demo", FormMethod.Post, new {@class = "form-horizontal", role = "form"}))
             {
@@ -230,9 +222,7 @@
                     <div id="step5" class="tab-pane fade">
                         <h4>Step 5. Refreshing the Access Token</h4>
                         <h5>
-                            <p>
-                                Use the refresh token you obtained in step 3 to retrieve a new pair of tokens
-                            </p>
+                            Use the refresh token you obtained in step 3 to retrieve a new pair of tokens
                         </h5>
                         @using (Html.BeginForm("RefreshAccessToken", "Demo", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
                         {
@@ -275,14 +265,11 @@
                     <div id="step6" class="tab-pane fade">
                         <h4>Step 6: Revoking Permissions</h4>
                         <h5>
-                            <p>
-                                If the merchant revokes a solution’s permissions in the
-                                Authorize.Net merchant interface, the refresh token is revoked immediately.
-                                Any previously issued access token will be valid till they expire. No new access token can be generated.
-                            </p>
-                            <p>
-                                Use this link to be directed to the mercant interface where you may revoke permissions
-                            </p>
+                            If the merchant revokes a solution’s permissions in the
+                            Authorize.Net merchant interface, the refresh token is revoked immediately.
+                            Any previously issued access token will be valid till they expire. No new access token can be generated.
+                            <br/>
+                            Use this link to be directed to the mercant interface where you may revoke permissions
                         </h5>
                         @using (Html.BeginForm("RedirectRevokePermissions", "Demo", FormMethod.Post, new { @class = "form-horizontal", role = "form", target = "_blank" }))
                         {

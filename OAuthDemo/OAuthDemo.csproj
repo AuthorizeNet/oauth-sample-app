@@ -229,6 +229,10 @@
     <Compile Include="Migrations\201708071825268_transId.Designer.cs">
       <DependentUpon>201708071825268_transId.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201708112254520_sonar.cs" />
+    <Compile Include="Migrations\201708112254520_sonar.Designer.cs">
+      <DependentUpon>201708112254520_sonar.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\DemoModels.cs" />
@@ -345,6 +349,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201708071825268_transId.resx">
       <DependentUpon>201708071825268_transId.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201708112254520_sonar.resx">
+      <DependentUpon>201708112254520_sonar.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

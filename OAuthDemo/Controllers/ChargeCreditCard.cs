@@ -9,7 +9,7 @@ using AuthorizeNet.Api.Controllers.Bases;
 
 namespace net.authorize.sample
 {
-    public class ChargeCreditCard
+    public static class ChargeCreditCard
     {
         public static String Run(String AccessToken, String CardNumber, DateTime ExpirationDate, decimal Amount)
         {

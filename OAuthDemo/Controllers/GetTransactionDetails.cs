@@ -9,7 +9,7 @@ using AuthorizeNet.Api.Controllers.Bases;
 
 namespace net.authorize.sample
 {
-    public class GetTransactionDetails
+    public static class GetTransactionDetails
     {
         public static String Run(String AccessToken, string transactionId)
         {

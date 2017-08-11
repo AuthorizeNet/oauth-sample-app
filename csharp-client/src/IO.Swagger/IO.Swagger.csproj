@@ -63,5 +63,10 @@ OpenAPI spec version: 1.0.0
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup>
+    <Analyzer Include="..\..\..\packages\SonarAnalyzer.CSharp.6.2.0.2536\analyzers\Google.Protobuf.dll" />
+    <Analyzer Include="..\..\..\packages\SonarAnalyzer.CSharp.6.2.0.2536\analyzers\SonarAnalyzer.CSharp.dll" />
+    <Analyzer Include="..\..\..\packages\SonarAnalyzer.CSharp.6.2.0.2536\analyzers\SonarAnalyzer.dll" />
+  </ItemGroup>
   <Import Project="$(MsBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
