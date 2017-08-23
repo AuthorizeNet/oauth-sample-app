@@ -172,7 +172,7 @@
                                     </div>
                                     @Html.LabelFor(m => m.Amount, new {@class = "col-md-2 control-label"})
                                     <div class="col-md-10">
-                                        @Html.TextBoxFor(m => m.Amount, new {@class = "form-control", Value = String.Format("{0:C}", Model.Amount)})
+                                        @Html.TextBoxFor(m => m.Amount, new {@class = "form-control", Value = Model.Amount})
                                     </div>
                                     @Html.HiddenFor(m => m.Id)
                                 </div>
