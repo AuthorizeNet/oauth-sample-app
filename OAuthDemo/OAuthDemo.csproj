@@ -44,6 +44,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AuthorizeNet, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\AuthorizeNet.1.9.3\lib\AuthorizeNet.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.AI.Agent.Intercept, Version=1.2.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.ApplicationInsights.Agent.Intercept.1.2.1\lib\net45\Microsoft.AI.Agent.Intercept.dll</HintPath>
       <Private>True</Private>
@@ -121,6 +125,10 @@
       <Private>True</Private>
       <HintPath>..\packages\Antlr.3.4.1.9004\lib\Antlr3.Runtime.dll</HintPath>
     </Reference>
+    <Reference Include="WebGrease, Version=1.6.5135.21930, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\WebGrease.1.6.0\lib\WebGrease.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Reference Include="EntityFramework">
@@ -182,39 +190,6 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201707211819197_DbSetup.cs" />
-    <Compile Include="Migrations\201707211819197_DbSetup.Designer.cs">
-      <DependentUpon>201707211819197_DbSetup.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201707211911420_IdFix.cs" />
-    <Compile Include="Migrations\201707211911420_IdFix.Designer.cs">
-      <DependentUpon>201707211911420_IdFix.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201707211919446_IdFix1.cs" />
-    <Compile Include="Migrations\201707211919446_IdFix1.Designer.cs">
-      <DependentUpon>201707211919446_IdFix1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201708040035023_readwrite.cs" />
-    <Compile Include="Migrations\201708040035023_readwrite.Designer.cs">
-      <DependentUpon>201708040035023_readwrite.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201708041729087_readwrite1.cs" />
-    <Compile Include="Migrations\201708041729087_readwrite1.Designer.cs">
-      <DependentUpon>201708041729087_readwrite1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201708041745214_readwrite2.cs" />
-    <Compile Include="Migrations\201708041745214_readwrite2.Designer.cs">
-      <DependentUpon>201708041745214_readwrite2.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201708071825268_transId.cs" />
-    <Compile Include="Migrations\201708071825268_transId.Designer.cs">
-      <DependentUpon>201708071825268_transId.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201708112254520_sonar.cs" />
-    <Compile Include="Migrations\201708112254520_sonar.Designer.cs">
-      <DependentUpon>201708112254520_sonar.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\DemoModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -277,10 +252,6 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\sdk-dotnet\Authorize.NET\AuthorizeNET.csproj">
-      <Project>{5d52eaec-42fb-4313-83b8-69e2f55ebf14}</Project>
-      <Name>AuthorizeNET</Name>
-    </ProjectReference>
     <ProjectReference Include="..\csharp-client\src\IO.Swagger\IO.Swagger.csproj">
       <Project>{3079b6fb-f9c5-4cbb-88d4-11007ac1c6a9}</Project>
       <Name>IO.Swagger</Name>
@@ -288,32 +259,6 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201707211819197_DbSetup.resx">
-      <DependentUpon>201707211819197_DbSetup.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201707211911420_IdFix.resx">
-      <DependentUpon>201707211911420_IdFix.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201707211919446_IdFix1.resx">
-      <DependentUpon>201707211919446_IdFix1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201708040035023_readwrite.resx">
-      <DependentUpon>201708040035023_readwrite.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201708041729087_readwrite1.resx">
-      <DependentUpon>201708041729087_readwrite1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201708041745214_readwrite2.resx">
-      <DependentUpon>201708041745214_readwrite2.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201708071825268_transId.resx">
-      <DependentUpon>201708071825268_transId.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201708112254520_sonar.resx">
-      <DependentUpon>201708112254520_sonar.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <Analyzer Include="..\packages\SonarAnalyzer.CSharp.6.2.0.2536\analyzers\Google.Protobuf.dll" />
