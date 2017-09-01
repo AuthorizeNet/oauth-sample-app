@@ -52,6 +52,8 @@ namespace IO.Swagger.Client
         /// </summary>
         public ApiClient()
         {
+            ServicePointManager.Expect100Continue = true;
+            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
             Configuration = Configuration.Default;
             RestClient = new RestClient("https://accesstest.authorize.net/oauth/v1");
         }

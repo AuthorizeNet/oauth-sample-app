@@ -32,11 +32,11 @@
                 <div class="form-group">
                     @Html.LabelFor(m => m.ClientId, new {@class = "col-md-2 control-label"})
                     <div class="col-md-10">
-                        @Html.TextBoxFor(m => m.ClientId, new {@class = "form-control", @readonly = "readonly", Value = Model.ClientId})
+                        @Html.TextBoxFor(m => m.ClientId, new {@class = "form-control", Value = Model.ClientId})
                     </div>
                     @Html.LabelFor(m => m.ClientSecret, new {@class = "col-md-2 control-label"})
                     <div class="col-md-10">
-                        @Html.TextBoxFor(m => m.ClientSecret, new {@class = "form-control", @readonly = "readonly", Value = Model.ClientSecret})
+                        @Html.TextBoxFor(m => m.ClientSecret, new {@class = "form-control", Value = Model.ClientSecret})
                     </div>
                 </div>
                 <div class="form-group">
@@ -63,11 +63,11 @@
                 <div class="form-group">
                     @Html.LabelFor(m => m.ClientId, new {@class = "col-md-2 control-label"})
                     <div class="col-md-10">
-                        @Html.TextBoxFor(m => m.ClientId, new {@class = "form-control", @readonly = "readonly"})
+                        @Html.TextBoxFor(m => m.ClientId, new {@class = "form-control"})
                     </div>
                     @Html.LabelFor(m => m.RedirectUri, new {@class = "col-md-2 control-label"})
                     <div class="col-md-10">
-                        @Html.TextBoxFor(m => m.RedirectUri, new {@class = "form-control", @readonly = "readonly"})
+                        @Html.TextBoxFor(m => m.RedirectUri, new {@class = "form-control"})
                     </div>
                     @Html.Label("Scope", new {@class = "col-md-2 control-label"})
                     <div class="col-md-10">
@@ -83,7 +83,7 @@
                     </div>
                     @Html.LabelFor(m => m.Sub, new {@class = "col-md-2 control-label"})
                     <div class="col-md-10">
-                        @Html.TextBoxFor(m => m.Sub, new {@class = "form-control", @readonly = "readonly"})
+                        @Html.TextBoxFor(m => m.Sub, new {@class = "form-control"})
                     </div>
                     @*@Html.LabelFor(m => m.RedirectMerchantUrl, new {@class = "col-md-2 control-label"})
                     <div class="col-md-10">
@@ -110,7 +110,7 @@
                 <div class="form-group">
                     @Html.LabelFor(m => m.GrantType, new {@class = "col-md-2 control-label"})
                     <div class="col-md-10">
-                        @Html.TextBoxFor(m => m.GrantType, new {@class = "form-control", @readonly = "readonly"})
+                        @Html.TextBoxFor(m => m.GrantType, new {@class = "form-control"})
                     </div>
                     @Html.LabelFor(m => m.Code, new {@class = "col-md-2 control-label"})
                     <div class="col-md-10">
@@ -118,11 +118,11 @@
                     </div>
                     @Html.LabelFor(m => m.ClientId, new {@class = "col-md-2 control-label"})
                     <div class="col-md-10">
-                        @Html.TextBoxFor(m => m.ClientId, new {@class = "form-control", @readonly = "readonly"})
+                        @Html.TextBoxFor(m => m.ClientId, new {@class = "form-control"})
                     </div>
                     @Html.LabelFor(m => m.ClientSecret, new {@class = "col-md-2 control-label"})
                     <div class="col-md-10">
-                        @Html.TextBoxFor(m => m.ClientSecret, new {@class = "form-control", @readonly = "readonly"})
+                        @Html.TextBoxFor(m => m.ClientSecret, new {@class = "form-control"})
                     </div>
                 </div>
                 <div class="form-group">
@@ -231,15 +231,15 @@
                             <div class="form-group">
                                 @Html.LabelFor(m => m.ClientId, new { @class = "col-md-2 control-label" })
                                 <div class="col-md-10">
-                                    @Html.TextBoxFor(m => m.ClientId, new { @class = "form-control", @readonly = "readonly" })
+                                    @Html.TextBoxFor(m => m.ClientId, new { @class = "form-control"})
                                 </div>
                                 @Html.LabelFor(m => m.ClientSecret, new { @class = "col-md-2 control-label" })
                                 <div class="col-md-10">
-                                    @Html.TextBoxFor(m => m.ClientSecret, new { @class = "form-control", @readonly = "readonly" })
+                                    @Html.TextBoxFor(m => m.ClientSecret, new { @class = "form-control"})
                                 </div>
                                 @Html.LabelFor(m => m.GrantType, new { @class = "col-md-2 control-label" })
                                 <div class="col-md-10">
-                                    @Html.TextBoxFor(m => m.GrantType, new { @class = "form-control", @readonly = "readonly", Value = "refresh_token" })
+                                    @Html.TextBoxFor(m => m.GrantType, new { @class = "form-control", Value = "refresh_token" })
                                 </div>
                                 @Html.LabelFor(m => m.RefreshToken, new { @class = "col-md-2 control-label" })
                                 <div class="col-md-10">
