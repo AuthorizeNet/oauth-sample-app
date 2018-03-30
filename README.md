@@ -41,18 +41,18 @@ public Demo()
 
 
 - Login with your Authorize.net credentials to allow access. 
- ![alt text](screenshots/filename.png "Description goes here")
-- Click Allow. Page will be redirected to [https://developer.authorize.net](https://developer.authorize.net) with generated authorization code in the url. Copy the authorization code to obtain access and refresh token.
-
 ![alt text](https://github.com/AuthorizeNet/oauth-sample-app/blob/master/OAuthDemo/Screenshots/Image5.png )
-
-- Go back to OAuth demo application. Click Continue. Use the authorization code obtained from previous step. Click Submit Token Request.
+- Click Allow. Page will be redirected to [https://developer.authorize.net](https://developer.authorize.net) with generated authorization code in the url. Copy the authorization code to obtain access and refresh token.
 
 ![alt text](https://github.com/AuthorizeNet/oauth-sample-app/blob/master/OAuthDemo/Screenshots/Image6.png )
 
--  Access Token and Refresh Token will be part of Response.Copy Access Token from Response. Click Continue.
+- Go back to OAuth demo application. Click Continue. Use the authorization code obtained from previous step. Click Submit Token Request.
 
 ![alt text](https://github.com/AuthorizeNet/oauth-sample-app/blob/master/OAuthDemo/Screenshots/Image7.png )
+
+-  Access Token and Refresh Token will be part of Response.Copy Access Token from Response. Click Continue.
+
+![alt text](https://github.com/AuthorizeNet/oauth-sample-app/blob/master/OAuthDemo/Screenshots/Image8.png )
 
 Sample Response-
 
@@ -76,27 +76,27 @@ Sample Response-
 
 - Use the Access Token to authenticate transactions. Test Write and Read transaction APIs using Access Token.
 
-![alt text](https://github.com/AuthorizeNet/oauth-sample-app/blob/master/OAuthDemo/Screenshots/Image8.png )
-
 ![alt text](https://github.com/AuthorizeNet/oauth-sample-app/blob/master/OAuthDemo/Screenshots/Image9.png )
-
-- To retrieve a new pair of tokens, use the refresh token obtained in Retrieve step.
 
 ![alt text](https://github.com/AuthorizeNet/oauth-sample-app/blob/master/OAuthDemo/Screenshots/Image10.png )
 
-- Use the refreshed Access Token for subsequent requests.
+- To retrieve a new pair of tokens, use the refresh token obtained in Retrieve step.
 
 ![alt text](https://github.com/AuthorizeNet/oauth-sample-app/blob/master/OAuthDemo/Screenshots/Image11.png )
+
+- Use the refreshed Access Token for subsequent requests.
+
+![alt text](https://github.com/AuthorizeNet/oauth-sample-app/blob/master/OAuthDemo/Screenshots/Image12.png )
 
 - To revoke permissions. Click Redirect to Revoke.
 
 Refresh Token is revoked immediately. Any previously issued Access Token will be valid till they expire.
 
-![alt text](https://github.com/AuthorizeNet/oauth-sample-app/blob/master/OAuthDemo/Screenshots/Image12.png )
+![alt text](https://github.com/AuthorizeNet/oauth-sample-app/blob/master/OAuthDemo/Screenshots/Image13.png )
 
 - Click Revoke Permissions
 
-![alt text](https://github.com/AuthorizeNet/oauth-sample-app/blob/master/OAuthDemo/Screenshots/Image13.png )
+![alt text](https://github.com/AuthorizeNet/oauth-sample-app/blob/master/OAuthDemo/Screenshots/Image14.png )
 
 - Click Revoke Permissions
 
