@@ -70,11 +70,13 @@ namespace IO.Swagger.Test
         [Test]
         public void GetTokenTest()
         {
-            // TODO uncomment below to test the method and replace null with proper value
+            // TODO uncomment below to test the method and replace placeholders with values
+            // obtained from the Authorize.Net Sandbox portal:
+            // https://sandbox.authorize.net  →  Account  →  Settings  →  Security Settings  →  API Credentials & Keys
             string grantType = "authorization_code";
-            string clientId = "4dp5b7gRqk";
-            string code = "novp2e";
-            string clientSecret = "fa3a5b16753d09b24bb44243605a4a98";
+            string clientId = "[YOUR_CLIENT_ID]";
+            string code = "[YOUR_AUTHORIZATION_CODE]";
+            string clientSecret = "[YOUR_CLIENT_SECRET]";
             string refreshToken = null;
             int? platform = 2;
             var response = instance.GetToken(grantType, clientId, code, clientSecret, refreshToken, platform);

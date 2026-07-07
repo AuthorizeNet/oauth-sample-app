@@ -7,6 +7,12 @@ using System.Web;
 
 namespace OAuthDemo.Models
 {
+    // WARNING: This is a demonstration application for educational purposes only
+    // OAuth credentials are stored in plaintext in the database to simplify the demo
+    // PRODUCTION APPLICATIONS MUST encrypt sensitive data at rest using:
+    // - ASP.NET Data Protection API
+    // - SQL Server column-level encryption
+    // - Azure Key Vault or similar key management service
     public class Demo
     {
         public const string RetrieveErrorResponse = "Error Retrieving the Access Token";
@@ -22,8 +28,11 @@ namespace OAuthDemo.Models
 
         public Demo()
         {
-            ClientId = "4dp5b7gRqk";
-            ClientSecret = "fa3a5b16753d09b24bb44243605a4a98";
+            // ClientId / ClientSecret must come from Web.config <appSettings> (use placeholders
+            // [YOUR_CLIENT_ID] / [YOUR_CLIENT_SECRET] until you fill in your own sandbox values).
+            // Obtain values from the Authorize.Net Sandbox portal — see README for the procedure.
+            ClientId = ConfigurationManager.AppSettings["ClientId"] ?? "";
+            ClientSecret = ConfigurationManager.AppSettings["ClientSecret"] ?? "";
             RedirectUri = "https://developer.authorize.net/api/reference/index.html";
             Read = true;
             Write = true;

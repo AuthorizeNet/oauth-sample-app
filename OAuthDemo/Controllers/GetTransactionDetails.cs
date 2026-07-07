@@ -15,20 +15,22 @@ namespace net.authorize.sample
         {
             Console.WriteLine("Get transaction details sample");
 
-            ApiOperationBase<ANetApiRequest, ANetApiResponse>.RunEnvironment = AuthorizeNet.Environment.SANDBOX;
-            // define the merchant information (authentication / transaction id)
-            ApiOperationBase<ANetApiRequest, ANetApiResponse>.MerchantAuthentication = new merchantAuthenticationType()
+            // SECURITY: Authentication is set per-request on the request object (not via
+            // shared static properties) to prevent race conditions in multi-threaded
+            // ASP.NET environments. Environment is passed to Execute() for the same reason.
+            var merchantAuthentication = new merchantAuthenticationType()
             {
                 ItemElementName = ItemChoiceType.accessToken,
                 Item = AccessToken
             };
 
             var request = new getTransactionDetailsRequest();
+            request.merchantAuthentication = merchantAuthentication;
             request.transId = transactionId;
 
             // instantiate the controller that will call the service
             var controller = new getTransactionDetailsController(request);
-            controller.Execute();
+            controller.Execute(AuthorizeNet.Environment.SANDBOX);
 
             // get the response from the service (errors contained if any)
             var response = controller.GetApiResponse();

@@ -36,7 +36,7 @@
                     </div>
                     @Html.LabelFor(m => m.ClientSecret, new {@class = "col-md-2 control-label"})
                     <div class="col-md-10">
-                        @Html.TextBoxFor(m => m.ClientSecret, new {@class = "form-control", Value = Model.ClientSecret})
+                        @Html.PasswordFor(m => m.ClientSecret, new {@class = "form-control"})
                     </div>
                 </div>
                 <div class="form-group">
@@ -122,7 +122,7 @@
                     </div>
                     @Html.LabelFor(m => m.ClientSecret, new {@class = "col-md-2 control-label"})
                     <div class="col-md-10">
-                        @Html.TextBoxFor(m => m.ClientSecret, new {@class = "form-control"})
+                        @Html.PasswordFor(m => m.ClientSecret, new {@class = "form-control"})
                     </div>
                 </div>
                 <div class="form-group">
@@ -134,7 +134,7 @@
             <div class="form-group">
                 <div class="col-md-offset-2 col-md-10">
                     <p>Response:</p>
-                    @Html.TextArea("Step3Response", null, new {rows = 10, cols = 500, value = Model.Step3Response})
+                    @Html.TextArea("Step3Response", null, new {rows = 10, cols = 500, value = Model.Step3Response, @readonly = "readonly"})
                 </div>
             </div>
             <a class="btn btn-default cont" href="#">Continue</a>
@@ -160,11 +160,11 @@
                                 <div class="form-group">
                                     @Html.LabelFor(m => m.AccessToken, new {@class = "col-md-2 control-label"})
                                     <div class="col-md-10">
-                                        @Html.TextBoxFor(m => m.AccessToken, new {@class = "form-control"})
+                                        @Html.PasswordFor(m => m.AccessToken, new {@class = "form-control"})
                                     </div>
                                     @Html.LabelFor(m => m.CardNumber, new {@class = "col-md-2 control-label"})
                                     <div class="col-md-10">
-                                        @Html.TextBoxFor(m => m.CardNumber, new {@class = "form-control"})
+                                        @Html.PasswordFor(m => m.CardNumber, new {@class = "form-control"})
                                     </div>
                                     @Html.LabelFor(m => m.ExpirationDate, new {@class = "col-md-2 control-label"})
                                     <div class="col-md-10">
@@ -195,7 +195,7 @@
                                 <div class="form-group">
                                     @Html.LabelFor(m => m.AccessToken, new { @class = "col-md-2 control-label" })
                                     <div class="col-md-10">
-                                        @Html.TextBoxFor(m => m.AccessToken, new {@class = "form-control"})
+                                        @Html.PasswordFor(m => m.AccessToken, new {@class = "form-control"})
                                     </div>
                                     @Html.LabelFor(m => m.TransactionId, new { @class = "col-md-2 control-label" })
                                     <div class="col-md-10">
@@ -235,7 +235,7 @@
                                 </div>
                                 @Html.LabelFor(m => m.ClientSecret, new { @class = "col-md-2 control-label" })
                                 <div class="col-md-10">
-                                    @Html.TextBoxFor(m => m.ClientSecret, new { @class = "form-control"})
+                                    @Html.PasswordFor(m => m.ClientSecret, new { @class = "form-control"})
                                 </div>
                                 @Html.LabelFor(m => m.GrantType, new { @class = "col-md-2 control-label" })
                                 <div class="col-md-10">
@@ -243,7 +243,7 @@
                                 </div>
                                 @Html.LabelFor(m => m.RefreshToken, new { @class = "col-md-2 control-label" })
                                 <div class="col-md-10">
-                                    @Html.TextBoxFor(m => m.RefreshToken, new { @class = "form-control" })
+                                    @Html.PasswordFor(m => m.RefreshToken, new { @class = "form-control" })
                                 </div>
                             </div>
 
